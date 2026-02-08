@@ -135,8 +135,11 @@ export default function App() {
             <div className="mb-8 text-8xl">👋</div>
             <h1 className="text-6xl font-bold mb-6">Welcome to My Portfolio</h1>
             <p className="text-2xl text-slate-600 dark:text-slate-400 mb-8">
-              I'm <span className="text-orange-400 font-semibold">Nagi</span>, a
-              full-stack developer passionate about creating beautiful web
+              I'm{" "}
+              <span className="text-orange-400 font-semibold">
+                Nagireddy Avula
+              </span>
+              , a full-stack developer passionate about creating beautiful web
               experiences
             </p>
             <a
@@ -153,10 +156,14 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-4xl font-bold mb-6">About Me</h2>
-                <p className="text-slate-600 dark:text-slate-400 text-lg mb-4">
-                  Hi, I'm Nagi, a passionate full-stack developer with over 5
-                  years of experience in building beautiful and functional web
-                  applications.
+                <p class="text-xl text-slate-600 leading-relaxed max-w-4xl">
+                  I am a seasoned Engineer dedicated to building robust digital
+                  products. My journey began with deep-diving into{" "}
+                  <span class="text-slate-900 font-semibold italic">
+                    Java internals
+                  </span>
+                  , and it has led me to mastering the entire software delivery
+                  lifecycle.
                 </p>
               </div>
               <div className="bg-gradient-to-br from-orange-400 to-orange-600 h-80 rounded-lg flex items-center justify-center">
@@ -652,7 +659,7 @@ export default function App() {
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Location</h3>
                   <p className="text-slate-600 dark:text-slate-400">
-                    San Francisco, CA, USA
+                    Guntur, Andhra Pradesh, INDIA
                   </p>
                 </div>
               </div>
