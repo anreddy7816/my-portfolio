@@ -70,7 +70,7 @@ export default function App() {
             <img
               src="/nagi.jpg"
               alt="Nagi"
-              className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full"
+              class="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full transition-transform duration-300 ease-in-out hover:scale-150 cursor-pointer"
             />
             <div className="text-2xl font-bold tracking-tight text-white">
               Nagi<span className="text-orange-400">.</span>
@@ -693,7 +693,7 @@ export default function App() {
                     Message
                   </label>
                   <textarea
-                    rows="2"
+                    rows="3"
                     placeholder="Your message here..."
                     className="w-full px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:border-orange-400 transition resize-none"
                   ></textarea>
@@ -900,7 +900,7 @@ export default function App() {
           )}
 
           <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
               if (!chatInput.trim() || isTyping) return;
               const userMsg = { from: "user", text: chatInput.trim() };
@@ -908,27 +908,19 @@ export default function App() {
               setChatInput("");
               setIsTyping(true);
 
-              // Static hardcoded responses
-              const responses = [
-                "That's great! Tell me more about what you're looking for.",
-                "I'd love to help with that project!",
-                "That sounds interesting. How can I assist you further?",
-                "Thanks for asking! I'm here to help with any web development needs.",
-                "Let me know if you'd like to discuss this in detail!",
-                "Absolutely! I can definitely assist you with that.",
-                "That's a perfect match for my expertise. Let's collaborate!",
-                "I appreciate your interest. How can I make an impact on your project?",
-              ];
+              const response = await fetch(
+                "http://localhost:8080/api/openai/chat/" + userMsg.text,
+                {
+                  method: "GET",
+                },
+              );
 
-              setTimeout(() => {
-                const randomResponse =
-                  responses[Math.floor(Math.random() * responses.length)];
-                setMessages((s) => [
-                  ...s,
-                  { from: "bot", text: randomResponse },
-                ]);
-                setIsTyping(false);
-              }, 1200);
+              const data = await response.text(); // Assuming your API returns plain text. Use .json() if it returns JSON.
+
+              console.log("API response:", data);
+
+              setMessages((s) => [...s, { from: "bot", text: data }]);
+              setIsTyping(false);
             }}
             className="px-3 py-3 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex gap-2"
           >
