@@ -68,7 +68,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <img
-              src="/nagi.jpg"
+              src="./src/assets/nagi.jpg"
               alt="Nagi"
               class="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full transition-transform duration-300 ease-in-out hover:scale-150 cursor-pointer"
             />
@@ -909,7 +909,7 @@ export default function App() {
               setIsTyping(true);
 
               const response = await fetch(
-                "http://localhost:8080/api/openai/chat/" + userMsg.text,
+                "http://localhost:8080/api/openai/chat-stream/" + userMsg.text,
                 {
                   method: "GET",
                 },
