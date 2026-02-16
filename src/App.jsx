@@ -68,7 +68,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <img
-              src="./src/assets/nagi.jpg"
+              src="https://elasticbeanstalk-ap-south-1-711927803325.s3.ap-south-1.amazonaws.com/nagi.jpg"
               alt="Nagi"
               class="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full transition-transform duration-300 ease-in-out hover:scale-150 cursor-pointer"
             />
