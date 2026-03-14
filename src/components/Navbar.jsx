@@ -1,5 +1,5 @@
 import React from "react";
-import NagiImage from "../assets/Nagi_rm_bg.png";
+import NagiImage from "../assets/nagi.png";
 
 import { useState } from "react";
 

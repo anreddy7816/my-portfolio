@@ -1,5 +1,5 @@
 import React from "react";
-import NagiAboutMe from "../assets/Nagi_AboutMe.png";
+import NagiAboutMe from "../assets/Nagi_rm_bg.png";
 
 export default function AboutSection() {
   return (
