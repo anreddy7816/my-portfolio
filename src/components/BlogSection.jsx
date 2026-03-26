@@ -59,10 +59,7 @@ export default function BlogSection() {
     },
   ];
   return (
-    <section
-      id="blog"
-      className="py-20 px-2 sm:px-4 md:px-10 scroll-mt-24 bg-[#f6f6f6] dark:bg-[#0a0c1b]"
-    >
+    <section id="blog" className="py-20 px-2 sm:px-4 md:px-10 scroll-mt-24">
       <div className="w-full">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Latest Articles</h2>

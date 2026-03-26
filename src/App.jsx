@@ -74,22 +74,11 @@ export default function App() {
       className={theme === "dark" ? "dark" : ""}
       style={{ minHeight: "100vh", width: "100vw", overflowX: "hidden" }}
     >
-      {/* Main background: soft gradient, subtle SVG pattern overlay */}
-      <div className="fixed inset-0 z-[-20] bg-gradient-to-br from-[#f5f7fa] to-[#c3cfe2] dark:from-slate-900 dark:to-slate-800"></div>
-      {/* SVG pattern overlay for light mode, inspired by kalyansaxena portfolio */}
-      {theme !== "dark" && (
-        <div className="absolute inset-0 pointer-events-none z-[-10]">
-          <img
-            src="https://themewagon.github.io/geeky-nextjs/images/banner-bg-shape.svg"
-            alt="bg pattern"
-            className="w-full h-full object-cover opacity-15"
-          />
-        </div>
-      )}
+      {/* Removed fixed gradient and SVG overlay for a cleaner look above the footer */}
       {/* Remove most blurred shapes for cleaner look */}
       {/* Content container: white background, soft shadow */}
       <Navbar theme={theme} setTheme={setTheme} setShowChat={setShowChat} />
-      <main className="container mx-auto max-w-full px-2 sm:px-4 md:px-10 text-base md:text-lg">
+      <main className="min-h-screen w-full px-2 sm:px-4 md:px-10 text-base md:text-lg bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-orange-900 mb-0">
         <HomeSection />
         <AboutSection />
         <PortfolioSection />

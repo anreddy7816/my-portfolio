@@ -2,10 +2,7 @@ import React from "react";
 
 export default function ResumeSection() {
   return (
-    <section
-      id="resume"
-      className="w-full flex flex-col items-center py-8 bg-transparent"
-    >
+    <section id="resume" className="w-full flex flex-col items-center py-8">
       <h2 className="text-2xl font-bold mb-4">Resume</h2>
       <div className="flex gap-4">
         <a

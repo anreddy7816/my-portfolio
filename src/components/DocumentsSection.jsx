@@ -2,10 +2,7 @@ import React from "react";
 
 export default function DocumentsSection({ documents }) {
   return (
-    <section
-      id="documents"
-      className="py-20 px-10 scroll-mt-24 bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-800"
-    >
+    <section id="documents" className="py-20 px-10 scroll-mt-24">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Documents & Resources</h2>
