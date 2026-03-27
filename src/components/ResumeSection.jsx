@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useId, useRef } from "react";
 import { resumeContent } from "../data/siteContent";
 import { resumeStyles } from "../styles/componentStyles";
 
@@ -7,19 +7,10 @@ function PdfIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-4 w-4"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
+      className="h-5 w-5"
+      fill="currentColor"
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"
-      />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M14 3v5h5" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M8 15h8" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M8 11h3" />
+      <path d="M7 2.75A2.25 2.25 0 0 0 4.75 5v14A2.25 2.25 0 0 0 7 21.25h10A2.25 2.25 0 0 0 19.25 19V8.56a2.25 2.25 0 0 0-.66-1.59l-3.9-3.9a2.25 2.25 0 0 0-1.6-.66H7Zm5.25 1.9 4.1 4.1h-2.6a1.5 1.5 0 0 1-1.5-1.5v-2.6ZM7.5 12.25a.75.75 0 0 1 .75-.75h2.1a2.4 2.4 0 1 1 0 4.8H9V18a.75.75 0 0 1-1.5 0v-5.75Zm1.5.75v1.8h1.35a.9.9 0 1 0 0-1.8H9Zm4.05-.75a.75.75 0 0 1 .75-.75h1.4a2.75 2.75 0 1 1 0 5.5h-1.4a.75.75 0 0 1-.75-.75v-4Zm1.5.75v2.5h.65a1.25 1.25 0 1 0 0-2.5h-.65Zm3.25-.75a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5h-1.25v.9h1.1a.75.75 0 0 1 0 1.5h-1.1V18a.75.75 0 0 1-1.5 0v-5.75Z" />
     </svg>
   );
 }
@@ -29,45 +20,84 @@ function WordIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-4 w-4"
+      className="h-5 w-5"
+      fill="currentColor"
+    >
+      <path d="M7 2.75A2.25 2.25 0 0 0 4.75 5v14A2.25 2.25 0 0 0 7 21.25h10A2.25 2.25 0 0 0 19.25 19V8.56a2.25 2.25 0 0 0-.66-1.59l-3.9-3.9a2.25 2.25 0 0 0-1.6-.66H7Zm5.25 1.9 4.1 4.1h-2.6a1.5 1.5 0 0 1-1.5-1.5v-2.6ZM6.8 12.34a.75.75 0 0 1 1.45-.28l1.03 3.41 1.14-3.44a.75.75 0 0 1 1.42 0l1.14 3.44 1.03-3.4a.75.75 0 1 1 1.43.43l-1.7 5.62a.75.75 0 0 1-1.43.02L11.13 14.8 10 18.14a.75.75 0 0 1-1.43-.02l-1.7-5.62a.75.75 0 0 1-.07-.16Z" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.8"
+      strokeWidth="2"
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"
-      />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M14 3v5h5" />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="m8 11 1.2 5L12 12l2.8 4L16 11"
-      />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M18 6 6 18" />
     </svg>
   );
 }
 
 export default function ResumeSection({ isOpen, onClose }) {
+  const containerRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const titleId = useId();
+  const summaryId = useId();
+
   useEffect(() => {
     if (!isOpen) {
       return undefined;
     }
 
-    const handleEscape = (event) => {
+    const previousActiveElement = document.activeElement;
+
+    const handleKeyDown = (event) => {
       if (event.key === "Escape") {
         onClose();
+        return;
+      }
+
+      if (event.key !== "Tab" || !containerRef.current) {
+        return;
+      }
+
+      const focusableElements = containerRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+
+      if (!focusableElements.length) {
+        event.preventDefault();
+        containerRef.current.focus();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
       }
     };
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleEscape);
+    document.addEventListener("keydown", handleKeyDown);
+    closeButtonRef.current?.focus();
 
     return () => {
       document.body.style.overflow = originalOverflow;
-      window.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("keydown", handleKeyDown);
+      previousActiveElement?.focus?.();
     };
   }, [isOpen, onClose]);
 
@@ -78,19 +108,32 @@ export default function ResumeSection({ isOpen, onClose }) {
   return (
     <div className={resumeStyles.overlay}>
       <div
+        ref={containerRef}
         className={resumeStyles.backdrop}
         onClick={onClose}
         aria-hidden="true"
       />
-      <div className={resumeStyles.container}>
+      <div
+        ref={containerRef}
+        className={resumeStyles.container}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={summaryId}
+        tabIndex={-1}
+      >
         <div className={resumeStyles.header}>
           <div className={resumeStyles.glowTop} />
           <div className={resumeStyles.glowBottom} />
           <div className={resumeStyles.headerContent}>
             <div>
               <p className={resumeStyles.eyebrow}>{resumeContent.eyebrow}</p>
-              <h2 className={resumeStyles.title}>{resumeContent.title}</h2>
-              <p className={resumeStyles.summary}>{resumeContent.summary}</p>
+              <h2 id={titleId} className={resumeStyles.title}>
+                {resumeContent.title}
+              </h2>
+              <p id={summaryId} className={resumeStyles.summary}>
+                {resumeContent.summary}
+              </p>
             </div>
             <div className={resumeStyles.actionRow}>
               <a
@@ -98,23 +141,29 @@ export default function ResumeSection({ isOpen, onClose }) {
                 download
                 className={resumeStyles.primaryButton}
               >
-                <PdfIcon />
-                PDF
+                <span className={resumeStyles.primaryButtonIcon}>
+                  <PdfIcon />
+                </span>
+                <span>PDF</span>
               </a>
               <a
                 href={resumeContent.files.word}
                 download
                 className={resumeStyles.secondaryButton}
               >
-                <WordIcon />
-                Word
+                <span className={resumeStyles.secondaryButtonIcon}>
+                  <WordIcon />
+                </span>
+                <span>Word</span>
               </a>
               <button
+                ref={closeButtonRef}
                 type="button"
                 onClick={onClose}
                 className={resumeStyles.closeButton}
+                aria-label="Close resume"
               >
-                Close
+                <CloseIcon />
               </button>
             </div>
           </div>

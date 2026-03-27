@@ -13,28 +13,22 @@ import { documents } from "./data/siteContent";
 import { appStyles } from "./styles/componentStyles";
 
 export default function App() {
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem("theme") || "light",
-  );
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") {
+      return "light";
+    }
+
+    return localStorage.getItem("theme") || "light";
+  });
   const [showResume, setShowResume] = useState(false);
 
   useEffect(() => {
-    const root =
-      document.getElementById("theme-root") || document.documentElement;
-    if (theme === "dark") root.classList.add("dark");
-    else root.classList.remove("dark");
+    document.documentElement.classList.toggle("dark", theme === "dark");
     localStorage.setItem("theme", theme);
   }, [theme]);
 
   return (
-    <div
-      id="theme-root"
-      className={theme === "dark" ? appStyles.root : ""}
-      style={{ minHeight: "100vh", width: "100vw", overflowX: "hidden" }}
-    >
-      {/* Removed fixed gradient and SVG overlay for a cleaner look above the footer */}
-      {/* Remove most blurred shapes for cleaner look */}
-      {/* Content container: white background, soft shadow */}
+    <div style={{ minHeight: "100vh", width: "100vw", overflowX: "hidden" }}>
       <Navbar
         theme={theme}
         setTheme={setTheme}

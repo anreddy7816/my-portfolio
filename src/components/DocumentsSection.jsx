@@ -23,9 +23,9 @@ export default function DocumentsSection({ documents }) {
                 </div>
                 <div className={documentsStyles.content}>
                   <h3 className={documentsStyles.cardTitle}>{d.title}</h3>
-                  <p className={documentsStyles.fileType}>
+                  {/* <p className={documentsStyles.fileType}>
                     {documentsSectionContent.fileTypeLabel}
-                  </p>
+                  </p> */}
                 </div>
                 <div className={documentsStyles.downloadIcon}>⬇️</div>
               </div>

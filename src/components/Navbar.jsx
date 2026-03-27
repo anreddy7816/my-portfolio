@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import NagiImage from "../assets/nagi.png";
 import { navigationLinks } from "../data/siteContent";
 import { navbarStyles } from "../styles/componentStyles";
 
 export default function Navbar({ theme, setTheme, onOpenResume }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuId = useId();
 
   const handleNavAction = (item, closeMenu = false) => {
     if (item.type === "action" && item.action === "resume") {
@@ -17,7 +18,7 @@ export default function Navbar({ theme, setTheme, onOpenResume }) {
   };
 
   return (
-    <nav className={navbarStyles.nav}>
+    <nav className={navbarStyles.nav} aria-label="Primary">
       <div className={navbarStyles.wrapper}>
         <div className={navbarStyles.brandGroup}>
           <img src={NagiImage} alt="Nagi" className={navbarStyles.brandImage} />
@@ -49,17 +50,23 @@ export default function Navbar({ theme, setTheme, onOpenResume }) {
             )}
           </div>
           <button
+            type="button"
             onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
             className={navbarStyles.themeButton}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+            aria-pressed={theme === "dark"}
           >
             <span className="sr-only">Toggle Theme</span>
             <span className="absolute left-1 text-xs">☀️</span>
             <span className="absolute right-1 text-xs">🌙</span>
           </button>
           <button
+            type="button"
             className={navbarStyles.mobileButton}
             onClick={() => setMobileMenuOpen((open) => !open)}
             aria-label="Open mobile menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls={mobileMenuId}
           >
             <svg
               className="w-6 h-6"
@@ -78,7 +85,7 @@ export default function Navbar({ theme, setTheme, onOpenResume }) {
         </div>
       </div>
       {mobileMenuOpen && (
-        <div className={navbarStyles.mobileMenu}>
+        <div className={navbarStyles.mobileMenu} id={mobileMenuId}>
           <div className={navbarStyles.mobileLinks}>
             {navigationLinks.map((item) =>
               item.type === "link" ? (

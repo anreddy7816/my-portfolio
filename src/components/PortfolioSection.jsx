@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import {
   portfolioProjects,
   portfolioSectionContent,
@@ -9,15 +9,54 @@ import {
 } from "../styles/componentStyles";
 
 function ProjectModal({ project, onClose }) {
+  const containerRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const titleId = useId();
+  const descriptionId = useId();
+
   useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "Escape") onClose();
+    const previousActiveElement = document.activeElement;
+
+    const onKey = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab" || !containerRef.current) {
+        return;
+      }
+
+      const focusableElements = containerRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+
+      if (!focusableElements.length) {
+        event.preventDefault();
+        containerRef.current.focus();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
     };
-    document.addEventListener("keydown", onKey);
+
     document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    closeButtonRef.current?.focus();
+
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      previousActiveElement?.focus?.();
     };
   }, [onClose]);
 
@@ -34,16 +73,26 @@ function ProjectModal({ project, onClose }) {
       onClick={onClose}
     >
       <div
+        ref={containerRef}
         className={portfolioStyles.modalContainer}
         style={{
           maxHeight: "calc(100vh - 120px)",
           animation: "modalSlideUp 0.35s cubic-bezier(0.34,1.3,0.64,1) both",
         }}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
+        tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
       >
         <div className={portfolioStyles.modalHeader}>
-          <h3 className={portfolioStyles.modalTitle}>{title}</h3>
+          <h3 id={titleId} className={portfolioStyles.modalTitle}>
+            {title}
+          </h3>
           <button
+            ref={closeButtonRef}
+            type="button"
             onClick={onClose}
             className={portfolioStyles.closeButton}
             aria-label="Close"
@@ -53,14 +102,18 @@ function ProjectModal({ project, onClose }) {
         </div>
 
         <div className={portfolioStyles.modalBody}>
-          <p className={portfolioStyles.modalOverview}>{modal.overview}</p>
+          <p id={descriptionId} className={portfolioStyles.modalOverview}>
+            {modal.overview}
+          </p>
 
           <div className={portfolioStyles.modalSection}>
             <h4 className={portfolioStyles.modalSectionTitle}>Key Features</h4>
             <ul className={portfolioStyles.modalFeatureList}>
               {modal.features.map((f) => (
                 <li key={f} className={portfolioStyles.modalFeatureItem}>
-                  <span className="mt-0.5 text-slate-400">–</span>
+                  <span className="mt-0.5 text-slate-500 dark:text-slate-400">
+                    –
+                  </span>
                   {f}
                 </li>
               ))}
@@ -106,7 +159,9 @@ export default function PortfolioSection() {
   const headingRef = useRef(null);
   const cardRefs = useRef([]);
   const [headingVisible, setHeadingVisible] = useState(false);
-  const [cardsVisible, setCardsVisible] = useState([false, false, false]);
+  const [cardsVisible, setCardsVisible] = useState(() =>
+    portfolioProjects.map(() => false),
+  );
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
 
