@@ -1,30 +1,28 @@
 import React from "react";
 import NagiAboutMe from "../assets/Nagi_rm_bg.png";
+import { aboutContent } from "../data/siteContent";
+import { aboutStyles } from "../styles/componentStyles";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-20 px-10 scroll-mt-24">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section id="about" className={aboutStyles.section}>
+      <div className={aboutStyles.wrapper}>
+        <div className={aboutStyles.grid}>
           <div>
-            <h2 className="text-4xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-              About Me
-            </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-200 leading-relaxed max-w-4xl">
-              I am a seasoned Engineer dedicated to building robust digital
-              products. My journey began with deep-diving into{" "}
-              <span className="text-slate-800 dark:text-orange-300 font-semibold italic">
-                Java internals
+            <h2 className={aboutStyles.title}>{aboutContent.title}</h2>
+            <p className={aboutStyles.description}>
+              {aboutContent.descriptionStart}{" "}
+              <span className={aboutStyles.highlight}>
+                {aboutContent.highlight}
               </span>
-              , and it has led me to mastering the entire software delivery
-              lifecycle.
+              {aboutContent.descriptionEnd}
             </p>
           </div>
-          <div className="flex items-center justify-center">
+          <div className={aboutStyles.imageWrapper}>
             <img
               src={NagiAboutMe}
-              alt="About Me"
-              className="h-64 w-64 object-cover rounded-full shadow-lg border-4 border-orange-300"
+              alt={aboutContent.imageAlt}
+              className={aboutStyles.image}
             />
           </div>
         </div>

@@ -1,111 +1,200 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   EnvelopeIcon,
   PhoneIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
+import emailjs from "@emailjs/browser";
+import { contactSectionContent } from "../data/siteContent";
+import { contactStyles } from "../styles/componentStyles";
 
 export default function ContactSection() {
+  const [formValues, setFormValues] = useState(() =>
+    contactSectionContent.form.fields.reduce((values, field) => {
+      values[field.name] = "";
+      return values;
+    }, {}),
+  );
+  const [submitState, setSubmitState] = useState({
+    status: "idle",
+    message: "",
+  });
+
+  const iconMap = {
+    email: EnvelopeIcon,
+    phone: PhoneIcon,
+    location: MapPinIcon,
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormValues((currentValues) => ({
+      ...currentValues,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setSubmitState({
+        status: "error",
+        message: contactSectionContent.form.messages.configError,
+      });
+      return;
+    }
+
+    setSubmitState({
+      status: "loading",
+      message: contactSectionContent.form.messages.sending,
+    });
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formValues.name,
+          from_email: formValues.email,
+          message: formValues.message,
+          reply_to: formValues.email,
+          to_name: contactSectionContent.form.recipientName,
+        },
+        {
+          publicKey,
+        },
+      );
+
+      setFormValues(
+        contactSectionContent.form.fields.reduce((values, field) => {
+          values[field.name] = "";
+          return values;
+        }, {}),
+      );
+      setSubmitState({
+        status: "idle",
+        message: "",
+      });
+
+      if (typeof window !== "undefined") {
+        window.alert(contactSectionContent.form.messages.successAlert);
+      }
+    } catch (error) {
+      setSubmitState({
+        status: "error",
+        message: contactSectionContent.form.messages.error,
+      });
+    }
+  };
+
   return (
-    <section id="contact" className="py-20 px-10 scroll-mt-24">
-      <div className="max-w-7xl mx-auto text-center mb-16">
-        <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
-        <div className="flex items-center justify-center gap-4 mb-4">
-          <a
-            href="https://github.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-md hover:opacity-90 transition"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://www.linkedin.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:opacity-90 transition"
-          >
-            LinkedIn
-          </a>
+    <section id="contact" className={contactStyles.section}>
+      <div className={contactStyles.header}>
+        <h2 className={contactStyles.title}>{contactSectionContent.title}</h2>
+        <div className={contactStyles.socialRow}>
+          {contactSectionContent.socialLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className={`${contactStyles.socialButton} ${contactStyles.socialTones[link.tone]}`}
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
-        <p className="text-slate-600 dark:text-slate-400 text-lg">
-          Have a project in mind? Let's work together and create something
-          amazing.
+        <p className={contactStyles.subtitle}>
+          {contactSectionContent.subtitle}
         </p>
       </div>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div className="space-y-8">
-          <div className="flex items-start gap-6">
-            <EnvelopeIcon className="w-10 h-10 text-orange-400 dark:text-orange-300 flex-shrink-0" />
-            <div>
-              <h3 className="text-xl font-semibold mb-2">Email</h3>
-              <p className="text-slate-600 dark:text-slate-400 mb-2">
-                Send us an email and we'll respond as soon as possible.
-              </p>
-              <a
-                href="mailto:anreddy7816@gmail.com"
-                className="text-orange-400 hover:text-orange-500 font-medium transition"
-              >
-                anreddy7816@gmail.com
-              </a>
-            </div>
-          </div>
-          <div className="flex items-start gap-6">
-            <PhoneIcon className="w-10 h-10 text-orange-400 dark:text-orange-300 flex-shrink-0" />
-            <div>
-              <h3 className="text-xl font-semibold mb-2">Phone</h3>
-              <p className="text-slate-600 dark:text-slate-400 mb-2">
-                Call us during business hours and speak with our team.
-              </p>
-              <a
-                href="tel:+91 9866167816"
-                className="text-orange-400 hover:text-orange-500 font-medium transition"
-              >
-                +91 98661 67816
-              </a>
-            </div>
-          </div>
-          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
-            <MapPinIcon className="w-8 h-8 text-orange-400 dark:text-orange-300" />
-            <span>Guntur, Andhra Pradesh, INDIA</span>
+      <div className={contactStyles.grid}>
+        <div className={contactStyles.methods}>
+          {contactSectionContent.methods.map((method) => {
+            const Icon = iconMap[method.icon];
+
+            return (
+              <div key={method.title} className={contactStyles.methodRow}>
+                <Icon className={contactStyles.methodIcon} />
+                <div>
+                  <h3 className={contactStyles.methodTitle}>{method.title}</h3>
+                  <p className={contactStyles.methodDescription}>
+                    {method.description}
+                  </p>
+                  <a href={method.href} className={contactStyles.methodLink}>
+                    {method.value}
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+          <div className={contactStyles.locationRow}>
+            <MapPinIcon className={contactStyles.locationIcon} />
+            <span>{contactSectionContent.location.value}</span>
           </div>
         </div>
-        <div className="bg-slate-50 dark:bg-slate-800 p-3 rounded-lg shadow-lg">
-          <h3 className="text-base font-bold mb-3">Send us a Message</h3>
-          <form className="space-y-2">
-            <div>
-              <label className="block text-xs font-medium mb-1">
-                Your Name
-              </label>
-              <input
-                type="text"
-                placeholder="John Doe"
-                className="w-full px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:border-orange-400 transition"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-medium mb-1">
-                Your Email
-              </label>
-              <input
-                type="email"
-                placeholder="john@example.com"
-                className="w-full px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:border-orange-400 transition"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-medium mb-1">Message</label>
-              <textarea
-                rows="3"
-                placeholder="Your message here..."
-                className="w-full px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:border-orange-400 transition resize-none"
-              ></textarea>
-            </div>
+        <div className={contactStyles.formCard}>
+          <h3 className={contactStyles.formTitle}>
+            {contactSectionContent.form.title}
+          </h3>
+          <form className={contactStyles.form} onSubmit={handleSubmit}>
+            {contactSectionContent.form.fields.map((field) => (
+              <div key={field.name}>
+                <label className={contactStyles.fieldWrapper}>
+                  {field.label}
+                </label>
+                {field.type === "textarea" ? (
+                  <textarea
+                    name={field.name}
+                    rows={field.rows}
+                    placeholder={field.placeholder}
+                    value={formValues[field.name]}
+                    onChange={handleChange}
+                    disabled={submitState.status === "loading"}
+                    className={contactStyles.textarea}
+                  />
+                ) : (
+                  <input
+                    name={field.name}
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    value={formValues[field.name]}
+                    onChange={handleChange}
+                    disabled={submitState.status === "loading"}
+                    className={contactStyles.input}
+                  />
+                )}
+              </div>
+            ))}
+            {submitState.message ? (
+              <p
+                className={`${contactStyles.statusBase} ${
+                  submitState.status === "error"
+                    ? contactStyles.statusError
+                    : contactStyles.statusLoading
+                }`}
+              >
+                {submitState.message}
+              </p>
+            ) : null}
             <button
               type="submit"
-              className="w-full py-1 bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-lg transition transform hover:scale-105"
+              disabled={submitState.status === "loading"}
+              className={`${contactStyles.submit} ${
+                submitState.status === "loading"
+                  ? contactStyles.submitDisabled
+                  : ""
+              }`}
             >
-              Send Message
+              {submitState.status === "loading"
+                ? contactSectionContent.form.submittingLabel
+                : contactSectionContent.form.submitLabel}
             </button>
           </form>
         </div>
