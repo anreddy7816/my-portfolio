@@ -1,6 +1,5 @@
 export const blogStyles = {
-  section:
-    "relative py-20 px-2 sm:px-4 md:px-10 scroll-mt-24 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/60 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden",
+  section: "relative py-20 px-2 sm:px-4 md:px-10 scroll-mt-24 overflow-hidden",
   wrapper: "mx-auto max-w-6xl",
   heading: "text-center mb-16",
   title:

@@ -1,6 +1,5 @@
 export const aboutStyles = {
-  section:
-    "scroll-mt-24 px-4 py-12 pb-24 sm:px-6 md:px-10 md:py-16 md:pb-32 bg-gradient-to-b from-white via-orange-50/20 to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-900",
+  section: "scroll-mt-24 px-4 py-12 pb-24 sm:px-6 md:px-10 md:py-16 md:pb-32",
   wrapper: "mx-auto max-w-5xl",
   grid: "grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14",
   title:

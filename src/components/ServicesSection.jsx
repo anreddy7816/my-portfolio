@@ -1,7 +1,44 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { services, servicesSectionContent } from "../data/siteContent";
 import { serviceToneStyles, servicesStyles } from "../styles/componentStyles";
+
+function TiltCard({ children, className, motionProps }) {
+  const ref = useRef(null);
+
+  const handleMouseMove = useCallback((e) => {
+    const card = ref.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    const rotateX = ((centerY - y) / centerY) * 8;
+    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.012)`;
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    const card = ref.current;
+    if (!card) return;
+    card.style.transform =
+      "perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)";
+  }, []);
+
+  return (
+    <motion.article
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={className}
+      style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+      {...motionProps}
+    >
+      {children}
+    </motion.article>
+  );
+}
 
 export default function ServicesSection() {
   return (
@@ -17,27 +54,29 @@ export default function ServicesSection() {
         </div>
         <div className={servicesStyles.grid}>
           {services.map((service, idx) => (
-            <motion.article
+            <TiltCard
               key={service.title}
-              initial={{
-                opacity: 0,
-                y: 36,
-                scale: 0.975,
-                filter: "blur(10px)",
-              }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-              transition={{
-                duration: 0.6,
-                ease: [0.22, 1, 0.36, 1],
-                delay: idx * 0.08,
-              }}
-              viewport={{ once: true }}
-              whileHover={{
-                y: -8,
-                scale: 1.012,
-                boxShadow: "0 24px 56px rgba(15,23,42,0.16)",
-              }}
               className={servicesStyles.cardShell}
+              motionProps={{
+                initial: {
+                  opacity: 0,
+                  y: 36,
+                  scale: 0.975,
+                  filter: "blur(10px)",
+                },
+                whileInView: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  filter: "blur(0px)",
+                },
+                transition: {
+                  duration: 0.6,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: idx * 0.08,
+                },
+                viewport: { once: true },
+              }}
             >
               <motion.div
                 className={servicesStyles.cardBorder}
@@ -57,12 +96,12 @@ export default function ServicesSection() {
                   <div className={servicesStyles.iconRow}>
                     <div className={servicesStyles.iconFrame}>
                       <div
-                        className={`${servicesStyles.iconHalo} ${serviceToneStyles[service.tone].iconHalo}`}
+                        className={`${servicesStyles.iconGlow} ${serviceToneStyles[service.tone].iconGlow}`}
                       />
                       <motion.div
-                        className={`${servicesStyles.iconBox} ${serviceToneStyles[service.tone].iconBox}`}
-                        whileHover={{ scale: 1.08, rotate: -6, y: -2 }}
-                        transition={{ duration: 0.25, ease: "easeOut" }}
+                        className={`${servicesStyles.iconCircle} ${serviceToneStyles[service.tone].iconCircle}`}
+                        whileHover={{ scale: 1.15, rotate: -8, y: -3 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                       >
                         {React.createElement(service.icon, {
                           className: servicesStyles.icon,
@@ -83,7 +122,7 @@ export default function ServicesSection() {
                   </ul>
                 </div>
               </div>
-            </motion.article>
+            </TiltCard>
           ))}
         </div>
       </div>

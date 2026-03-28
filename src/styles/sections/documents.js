@@ -1,6 +1,5 @@
 export const documentsStyles = {
-  section:
-    "scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20 bg-gradient-to-b from-white via-slate-50/50 to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-900",
+  section: "scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20",
   wrapper: "max-w-7xl mx-auto",
   heading: "text-center mb-16",
   title:

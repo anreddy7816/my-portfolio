@@ -4,7 +4,7 @@ export const homeStyles = {
   glow: "pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-gradient-radial from-orange-200/30 via-amber-100/10 to-transparent blur-3xl dark:from-orange-500/10 dark:via-amber-500/5 dark:to-transparent",
   wrapper: "relative z-10 mx-auto max-w-5xl text-center",
   emoji:
-    "mb-6 text-6xl drop-shadow-[0_10px_24px_rgba(249,115,22,0.18)] sm:mb-8 sm:text-8xl animate-[bounce_3s_ease-in-out_infinite]",
+    "mb-6 text-6xl drop-shadow-[0_10px_24px_rgba(249,115,22,0.18)] sm:mb-8 sm:text-8xl",
   title:
     "mb-5 bg-gradient-to-r from-slate-950 via-amber-600 to-yellow-500 bg-clip-text text-4xl font-extrabold leading-tight tracking-tight text-transparent dark:from-white dark:via-orange-200 dark:to-amber-400 sm:mb-6 sm:text-5xl md:text-6xl",
   intro:

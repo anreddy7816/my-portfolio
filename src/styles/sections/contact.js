@@ -1,6 +1,6 @@
 export const contactStyles = {
   section:
-    "relative scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20 overflow-hidden bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 dark:from-slate-950/80 dark:via-slate-900 dark:to-slate-950/80",
+    "relative scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20 overflow-hidden",
   /* Decorative ambient glow blobs */
   glowA:
     "pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-orange-300/20 blur-[100px] dark:bg-orange-500/10",

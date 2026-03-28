@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import {
   ArrowTopRightOnSquareIcon,
   ArrowUpRightIcon,
@@ -186,6 +186,27 @@ export default function PortfolioSection() {
   );
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
+  const tiltRefs = useRef([]);
+
+  const handleTiltMove = useCallback((e, i) => {
+    const card = tiltRefs.current[i];
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateY = ((x - centerX) / centerX) * 6;
+    const rotateX = ((centerY - y) / centerY) * 6;
+    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.01)`;
+  }, []);
+
+  const handleTiltLeave = useCallback((i) => {
+    const card = tiltRefs.current[i];
+    if (!card) return;
+    card.style.transform =
+      "perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)";
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -244,16 +265,23 @@ export default function PortfolioSection() {
           {portfolioProjects.map((project, i) => (
             <article
               key={project.title}
-              ref={(el) => (cardRefs.current[i] = el)}
+              ref={(el) => {
+                cardRefs.current[i] = el;
+                tiltRefs.current[i] = el;
+              }}
               onMouseEnter={() => setHoveredCard(i)}
-              onMouseLeave={() => setHoveredCard(null)}
+              onMouseMove={(e) => handleTiltMove(e, i)}
+              onMouseLeave={() => {
+                setHoveredCard(null);
+                handleTiltLeave(i);
+              }}
               className={portfolioStyles.card}
               style={{
+                transformStyle: "preserve-3d",
+                willChange: "transform",
                 opacity: cardsVisible[i] ? 1 : 0,
                 transform: cardsVisible[i]
-                  ? hoveredCard === i
-                    ? "translateY(-8px) rotate(-0.6deg) scale(1.01)"
-                    : "translateY(0) scale(1)"
+                  ? "perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)"
                   : "translateY(36px) scale(0.985)",
                 filter: cardsVisible[i] ? "blur(0px)" : "blur(10px)",
                 border:
@@ -265,7 +293,7 @@ export default function PortfolioSection() {
                     ? portfolioToneStyles[project.tone].hoverBorder.boxShadow
                     : undefined,
                 transition:
-                  "opacity 0.6s ease-out, transform 0.55s cubic-bezier(0.22,1,0.36,1), filter 0.55s ease-out, border-color 0.3s ease, box-shadow 0.35s ease",
+                  "opacity 0.6s ease-out, transform 0.3s cubic-bezier(0.22,1,0.36,1), filter 0.55s ease-out, border-color 0.3s ease, box-shadow 0.35s ease",
               }}
             >
               <div
