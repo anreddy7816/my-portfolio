@@ -108,7 +108,6 @@ export default function ResumeSection({ isOpen, onClose }) {
   return (
     <div className={resumeStyles.overlay}>
       <div
-        ref={containerRef}
         className={resumeStyles.backdrop}
         onClick={onClose}
         aria-hidden="true"

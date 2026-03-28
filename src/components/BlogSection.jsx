@@ -156,17 +156,24 @@ export default function BlogSection() {
                     backgroundImage: blogToneStyles[article.tone].border,
                     backgroundSize: "200% 200%",
                   }}
-                  animate={{
+                  whileInView={{
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                   }}
                   transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+                  viewport={{ once: false, amount: 0.2 }}
                 />
 
                 <article className={blogStyles.card}>
                   <div className={blogStyles.image}>
                     <div className={blogStyles.iconGlow} />
                     <div className={blogStyles.iconCircle}>
-                      <div className={blogStyles.icon}>{article.icon}</div>
+                      <div
+                        className={blogStyles.icon}
+                        role="img"
+                        aria-label={article.tag}
+                      >
+                        {article.icon}
+                      </div>
                     </div>
                   </div>
                   <div className={blogStyles.body}>

@@ -1,20 +1,26 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { homeContent } from "../data/siteContent";
 import { homeStyles } from "../styles/componentStyles";
 
 export default function HomeSection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section id="home" className={homeStyles.section}>
       <div className={homeStyles.glow} aria-hidden="true" />
       <div className={homeStyles.wrapper}>
         <motion.div
           className={homeStyles.emoji}
-          animate={{
-            y: [0, -12, 0],
-            rotateY: [0, 15, 0, -15, 0],
-            rotateX: [0, 8, 0, -8, 0],
-          }}
+          animate={
+            prefersReducedMotion
+              ? {}
+              : {
+                  y: [0, -12, 0],
+                  rotateY: [0, 15, 0, -15, 0],
+                  rotateX: [0, 8, 0, -8, 0],
+                }
+          }
           transition={{
             duration: 5,
             ease: "easeInOut",

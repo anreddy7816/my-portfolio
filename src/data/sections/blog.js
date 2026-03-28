@@ -35,7 +35,7 @@ export const blogArticles = [
     href: "#",
     details: {
       overview:
-        "Modern web security is mostly about reducing common attack surfaces consistently. This article covers the baseline practices that should exist before thinking about advanced hardening.               Modern web security is mostly about reducing common attack surfaces consistently. This article covers the baseline practices that should exist before thinking about advanced hardening. Modern web security is mostly about reducing common attack surfaces consistently. This article covers the baseline practices that should exist before thinking about advanced hardening.   ",
+        "Modern web security is mostly about reducing common attack surfaces consistently. This article covers the baseline practices that should exist before thinking about advanced hardening.",
 
       highlights: [
         "Validate and sanitize all user input before persisting or rendering it.",

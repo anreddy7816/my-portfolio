@@ -8,10 +8,70 @@
       // Tailwind configuration for class-based dark mode
       tailwind.config = {
         darkMode: "class",
+        theme: {
+          extend: {
+            boxShadow: {
+              md1: "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)",
+              md2: "0 3px 6px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06)",
+              md3: "0 10px 20px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.05)",
+              md4: "0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.05)",
+              md5: "0 19px 38px rgba(0,0,0,0.15), 0 15px 12px rgba(0,0,0,0.05)",
+            },
+            transitionTimingFunction: {
+              "md-standard": "cubic-bezier(0.2, 0, 0, 1)",
+              "md-emphasized": "cubic-bezier(0.2, 0, 0, 1)",
+              "md-decelerate": "cubic-bezier(0, 0, 0, 1)",
+            },
+            transitionDuration: {
+              "md-short": "200ms",
+              "md-medium": "300ms",
+              "md-long": "500ms",
+            },
+            borderRadius: {
+              "md-sm": "8px",
+              "md-md": "12px",
+              "md-lg": "16px",
+              "md-xl": "28px",
+            },
+          },
+        },
       };
     </script>
     <link rel="icon" type="image/png" href="/assets/title-CdoWI4gU.png" />
-    <title>nagi portfolio</title>
+    <title>Nagireddy Avula — Full-Stack Developer Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Nagireddy Avula — full-stack developer specializing in React, Java, Spring Boot, and modern web experiences."
+    />
+    <meta
+      name="keywords"
+      content="Nagireddy Avula, full-stack developer, React, Java, Spring Boot, web developer, portfolio"
+    />
+    <meta name="author" content="Nagireddy Avula" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Nagireddy Avula — Full-Stack Developer Portfolio"
+    />
+    <meta
+      property="og:description"
+      content="Full-stack developer passionate about creating beautiful web experiences with React, Java, and Spring Boot."
+    />
+    <meta property="og:image" content="/assets/title-CdoWI4gU.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Nagireddy Avula — Full-Stack Developer Portfolio"
+    />
+    <meta
+      name="twitter:description"
+      content="Full-stack developer passionate about creating beautiful web experiences."
+    />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
@@ -25,8 +85,8 @@
         scroll-behavior: smooth;
       }
     </style>
-    <script type="module" crossorigin src="/assets/index-BKGDTaLn.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-D_Monovc.css">
+    <script type="module" crossorigin src="/assets/index-G5kdN3Sx.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BaAfHjW1.css">
   </head>
   <body
     class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 overflow-x-hidden"

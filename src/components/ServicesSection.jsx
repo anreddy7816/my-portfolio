@@ -83,10 +83,11 @@ export default function ServicesSection() {
                 style={{
                   backgroundImage: serviceToneStyles[service.tone].border,
                 }}
-                animate={{
+                whileInView={{
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                 }}
                 transition={{ duration: 10, ease: "linear", repeat: Infinity }}
+                viewport={{ once: false, amount: 0.2 }}
               />
               <div
                 className={`${servicesStyles.cardGlow} ${serviceToneStyles[service.tone].glow}`}
