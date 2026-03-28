@@ -23,10 +23,8 @@ export default function DocumentsSection({ documents }) {
         </motion.div>
         <div className={documentsStyles.grid}>
           {documents.map((d, i) => (
-            <motion.a
+            <motion.div
               key={i}
-              href={d.href}
-              download
               className={documentsStyles.card}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -44,9 +42,16 @@ export default function DocumentsSection({ documents }) {
                 <div className={documentsStyles.content}>
                   <h3 className={documentsStyles.cardTitle}>{d.title}</h3>
                 </div>
-                <div className={documentsStyles.downloadIcon}>⬇️</div>
+                <a
+                  href={d.href}
+                  download
+                  className={documentsStyles.downloadIcon}
+                  aria-label={`Download ${d.title}`}
+                >
+                  ⬇️
+                </a>
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </div>
       </div>

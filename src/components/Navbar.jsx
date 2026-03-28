@@ -126,7 +126,16 @@ export default function Navbar({
                     key={item.label}
                     href={item.href}
                     className={`${navbarStyles.link} ${isActive(item) ? navbarStyles.linkActive : ""}`}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      const target = document.getElementById(
+                        item.href.slice(1),
+                      );
+                      if (target) {
+                        target.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
                     initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.04, duration: 0.25 }}
