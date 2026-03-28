@@ -135,44 +135,61 @@ export default function BlogSection() {
           </div>
           <div className={blogStyles.grid}>
             {blogArticles.map((article, i) => (
-              <motion.article
+              <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{
                   type: "spring",
-                  stiffness: 60,
-                  damping: 12,
-                  delay: i * 0.15,
+                  stiffness: 80,
+                  damping: 16,
+                  delay: i * 0.12,
                 }}
-                viewport={{ once: true }}
-                className={blogStyles.card}
+                viewport={{ once: true, margin: "-40px" }}
+                whileHover={{ y: -8, scale: 1.015 }}
+                className={blogStyles.cardShell}
               >
-                <div
-                  className={`${blogStyles.image} bg-gradient-to-br ${blogToneStyles[article.tone].gradient}`}
-                >
-                  <div className={blogStyles.icon}>{article.icon}</div>
-                </div>
-                <div className={blogStyles.body}>
-                  <div className={blogStyles.meta}>
-                    <span
-                      className={`${blogStyles.tag} ${blogToneStyles[article.tone].tag}`}
-                    >
-                      {article.tag}
-                    </span>
-                    <span className={blogStyles.date}>{article.date}</span>
+                {/* Animated gradient border */}
+                <motion.div
+                  className={blogStyles.cardBorder}
+                  style={{
+                    backgroundImage: blogToneStyles[article.tone].border,
+                    backgroundSize: "200% 200%",
+                  }}
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+                />
+
+                <article className={blogStyles.card}>
+                  <div className={blogStyles.image}>
+                    <div className={blogStyles.iconGlow} />
+                    <div className={blogStyles.iconCircle}>
+                      <div className={blogStyles.icon}>{article.icon}</div>
+                    </div>
                   </div>
-                  <h3 className={blogStyles.cardTitle}>{article.title}</h3>
-                  <p className={blogStyles.description}>{article.desc}</p>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedArticle(article)}
-                    className={blogStyles.linkButton}
-                  >
-                    Read More →
-                  </button>
-                </div>
-              </motion.article>
+                  <div className={blogStyles.body}>
+                    <div className={blogStyles.meta}>
+                      <span
+                        className={`${blogStyles.tag} ${blogToneStyles[article.tone].tag}`}
+                      >
+                        {article.tag}
+                      </span>
+                      <span className={blogStyles.date}>{article.date}</span>
+                    </div>
+                    <h3 className={blogStyles.cardTitle}>{article.title}</h3>
+                    <p className={blogStyles.description}>{article.desc}</p>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedArticle(article)}
+                      className={blogStyles.linkButton}
+                    >
+                      Read More →
+                    </button>
+                  </div>
+                </article>
+              </motion.div>
             ))}
           </div>
         </div>

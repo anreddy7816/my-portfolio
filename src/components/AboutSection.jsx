@@ -17,6 +17,9 @@ export default function AboutSection() {
               </span>
               {aboutContent.descriptionEnd}
             </p>
+            <p className={aboutStyles.supportingText}>
+              {aboutContent.supportingText}
+            </p>
           </div>
           <div className={aboutStyles.imageWrapper}>
             <img

@@ -11,16 +11,39 @@ body,
 body {
   font-family: "Poppins", sans-serif;
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color 0.3s cubic-bezier(0.2, 0, 0, 1),
+    color 0.3s cubic-bezier(0.2, 0, 0, 1);
   font-size: 16px;
   background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.01em;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #ea580c 100%);
-  }
+.dark body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #ea580c 100%);
+}
+
+/* Material ripple-style focus rings */
+*:focus-visible {
+  outline: 2px solid rgba(249, 115, 22, 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smoother scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.5);
 }
 
 @media (max-width: 640px) {

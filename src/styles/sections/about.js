@@ -1,13 +1,17 @@
 export const aboutStyles = {
-  section: "scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20",
-  wrapper: "max-w-7xl mx-auto",
-  grid: "grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-12",
+  section:
+    "scroll-mt-24 px-4 py-12 pb-24 sm:px-6 md:px-10 md:py-16 md:pb-32 bg-gradient-to-b from-white via-orange-50/20 to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-900",
+  wrapper: "mx-auto max-w-5xl",
+  grid: "grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14",
   title:
-    "mb-5 text-3xl font-bold text-slate-900 dark:text-slate-100 sm:text-4xl md:mb-6",
+    "mb-4 text-2xl font-extrabold tracking-tight bg-gradient-to-r from-slate-950 via-amber-600 to-yellow-500 bg-clip-text text-transparent dark:from-white dark:via-orange-200 dark:to-amber-400 sm:text-3xl md:mb-5",
   description:
-    "max-w-4xl text-base leading-8 text-slate-700 dark:text-slate-200 sm:text-lg md:text-xl",
-  highlight: "text-slate-800 dark:text-orange-300 font-semibold italic",
-  imageWrapper: "flex items-center justify-center",
+    "max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-white/90 sm:text-base md:text-lg",
+  supportingText:
+    "mt-5 max-w-3xl text-sm leading-relaxed text-slate-500 dark:text-slate-300",
+  highlight:
+    "bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text font-semibold italic text-transparent dark:from-orange-300 dark:to-amber-200",
+  imageWrapper: "flex items-center justify-center md:justify-end",
   image:
-    "h-64 w-64 object-cover rounded-full shadow-lg border-4 border-orange-300",
+    "h-64 w-64 rounded-full border-4 border-orange-300/80 object-cover shadow-md5 ring-4 ring-orange-100/50 transition-all duration-md-long ease-md-standard hover:scale-105 hover:shadow-[0_20px_50px_rgba(249,115,22,0.25)] dark:border-orange-400/50 dark:ring-orange-500/10 dark:shadow-[0_16px_48px_rgba(249,115,22,0.2)] dark:hover:shadow-[0_24px_60px_rgba(249,115,22,0.3)]",
 };

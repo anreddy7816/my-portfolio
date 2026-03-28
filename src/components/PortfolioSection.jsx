@@ -1,5 +1,14 @@
 import React, { useEffect, useId, useRef, useState } from "react";
 import {
+  ArrowTopRightOnSquareIcon,
+  ArrowUpRightIcon,
+  ChartBarSquareIcon,
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  CodeBracketIcon,
+  ShoppingBagIcon,
+} from "@heroicons/react/24/outline";
+import {
   portfolioProjects,
   portfolioSectionContent,
 } from "../data/siteContent";
@@ -7,6 +16,12 @@ import {
   portfolioStyles,
   portfolioToneStyles,
 } from "../styles/componentStyles";
+
+const projectIcons = {
+  commerce: ShoppingBagIcon,
+  analytics: ChartBarSquareIcon,
+  chat: ChatBubbleLeftRightIcon,
+};
 
 function ProjectModal({ project, onClose }) {
   const containerRef = useRef(null);
@@ -111,9 +126,7 @@ function ProjectModal({ project, onClose }) {
             <ul className={portfolioStyles.modalFeatureList}>
               {modal.features.map((f) => (
                 <li key={f} className={portfolioStyles.modalFeatureItem}>
-                  <span className="mt-0.5 text-slate-500 dark:text-slate-400">
-                    –
-                  </span>
+                  <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-slate-500 dark:text-slate-400" />
                   {f}
                 </li>
               ))}
@@ -137,14 +150,23 @@ function ProjectModal({ project, onClose }) {
           </div>
 
           <div className={portfolioStyles.modalActions}>
-            <a href={modal.liveUrl} className={portfolioStyles.primaryAction}>
+            <a
+              href={modal.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={portfolioStyles.primaryAction}
+            >
               Live Demo
+              <ArrowTopRightOnSquareIcon className="h-4 w-4" />
             </a>
             <a
               href={modal.githubUrl}
+              target="_blank"
+              rel="noreferrer"
               className={portfolioStyles.secondaryAction}
             >
               GitHub
+              <CodeBracketIcon className="h-4 w-4" />
             </a>
           </div>
         </div>
@@ -220,7 +242,7 @@ export default function PortfolioSection() {
 
         <div className={portfolioStyles.grid}>
           {portfolioProjects.map((project, i) => (
-            <div
+            <article
               key={project.title}
               ref={(el) => (cardRefs.current[i] = el)}
               onMouseEnter={() => setHoveredCard(i)}
@@ -230,35 +252,60 @@ export default function PortfolioSection() {
                 opacity: cardsVisible[i] ? 1 : 0,
                 transform: cardsVisible[i]
                   ? hoveredCard === i
-                    ? "translateY(-10px) scale(1.025)"
+                    ? "translateY(-8px) rotate(-0.6deg) scale(1.01)"
                     : "translateY(0) scale(1)"
-                  : "translateY(48px) scale(1)",
+                  : "translateY(36px) scale(0.985)",
+                filter: cardsVisible[i] ? "blur(0px)" : "blur(10px)",
                 border:
                   hoveredCard === i
                     ? portfolioToneStyles[project.tone].hoverBorder.border
-                    : "2px solid transparent",
+                    : undefined,
                 boxShadow:
                   hoveredCard === i
                     ? portfolioToneStyles[project.tone].hoverBorder.boxShadow
-                    : "0 4px 16px rgba(0,0,0,0.08)",
+                    : undefined,
                 transition:
-                  "opacity 0.6s ease-out, transform 0.45s cubic-bezier(0.34,1.56,0.64,1), border 0.3s ease, box-shadow 0.35s ease",
+                  "opacity 0.6s ease-out, transform 0.55s cubic-bezier(0.22,1,0.36,1), filter 0.55s ease-out, border-color 0.3s ease, box-shadow 0.35s ease",
               }}
             >
               <div
-                className={`${portfolioStyles.cardImage} bg-gradient-to-br ${project.gradient}`}
+                className={`${portfolioStyles.cardVisual} ${portfolioToneStyles[project.tone].surface}`}
               >
                 <div
-                  className={portfolioStyles.cardEmoji}
-                  style={{
-                    transition: "transform 0.4s ease",
-                  }}
-                >
-                  {project.emoji}
+                  className={`${portfolioStyles.cardVisualGlow} ${portfolioToneStyles[project.tone].glow}`}
+                />
+                <div className={portfolioStyles.cardIconRow}>
+                  <div
+                    className={`${portfolioStyles.cardIconWrap} ${portfolioToneStyles[project.tone].iconWrap}`}
+                    style={{
+                      animation:
+                        hoveredCard === i
+                          ? "portfolioIconFloat 1.8s ease-in-out infinite"
+                          : "none",
+                    }}
+                  >
+                    {(() => {
+                      const ProjectIcon =
+                        projectIcons[project.icon] ?? ShoppingBagIcon;
+
+                      return (
+                        <ProjectIcon className={portfolioStyles.cardIcon} />
+                      );
+                    })()}
+                  </div>
                 </div>
               </div>
               <div className={portfolioStyles.cardBody}>
-                <h3 className={portfolioStyles.cardTitle}>{project.title}</h3>
+                <div className={portfolioStyles.cardHeader}>
+                  <div className={portfolioStyles.cardTitleWrap}>
+                    <p className={portfolioStyles.cardKicker}>
+                      Featured project
+                    </p>
+                    <h3 className={portfolioStyles.cardTitle}>
+                      {project.title}
+                    </h3>
+                  </div>
+                </div>
                 <p className={portfolioStyles.cardDescription}>
                   {project.description}
                 </p>
@@ -272,14 +319,17 @@ export default function PortfolioSection() {
                     </span>
                   ))}
                 </div>
-                <button
-                  onClick={() => setSelectedProject(project)}
-                  className={portfolioStyles.viewButton}
-                >
-                  View Project →
-                </button>
+                <div className={portfolioStyles.cardFooter}>
+                  <button
+                    onClick={() => setSelectedProject(project)}
+                    className={portfolioStyles.viewButton}
+                  >
+                    View project
+                    <ArrowUpRightIcon className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
@@ -290,6 +340,8 @@ export default function PortfolioSection() {
           onClose={() => setSelectedProject(null)}
         />
       )}
+
+      <style>{portfolioStyles.keyframes}</style>
     </section>
   );
 }

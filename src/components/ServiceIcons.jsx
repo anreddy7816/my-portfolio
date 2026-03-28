@@ -1,15 +1,17 @@
-import { AcademicCapIcon } from "@heroicons/react/24/solid";
-import { CodeBracketIcon } from "@heroicons/react/24/solid";
-import { CloudIcon } from "@heroicons/react/24/solid";
-import { ShieldCheckIcon } from "@heroicons/react/24/solid";
-import { DevicePhoneMobileIcon } from "@heroicons/react/24/solid";
-import { UserGroupIcon } from "@heroicons/react/24/solid";
+import {
+  CircleStackIcon,
+  CommandLineIcon,
+  DevicePhoneMobileIcon,
+  LightBulbIcon,
+  LockClosedIcon,
+  PaintBrushIcon,
+} from "@heroicons/react/24/outline";
 
 export const ServiceIcons = {
-  webDesign: AcademicCapIcon,
-  webDevelopment: CodeBracketIcon,
-  cloudDevOps: CloudIcon,
-  security: ShieldCheckIcon,
+  webDesign: PaintBrushIcon,
+  webDevelopment: CommandLineIcon,
+  cloudDevOps: CircleStackIcon,
+  security: LockClosedIcon,
   mobile: DevicePhoneMobileIcon,
-  consulting: UserGroupIcon,
+  consulting: LightBulbIcon,
 };

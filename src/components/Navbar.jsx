@@ -57,8 +57,13 @@ export default function Navbar({ theme, setTheme, onOpenResume }) {
             aria-pressed={theme === "dark"}
           >
             <span className="sr-only">Toggle Theme</span>
-            <span className="absolute left-1 text-xs">☀️</span>
-            <span className="absolute right-1 text-xs">🌙</span>
+            <span className="absolute left-1 text-[10px] leading-none">☀️</span>
+            <span className="absolute right-1 text-[10px] leading-none">
+              🌙
+            </span>
+            <span
+              className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow-[0_1px_4px_rgba(0,0,0,0.3)] transition-transform duration-300 ease-in-out ${theme === "dark" ? "translate-x-[1.35rem]" : "translate-x-0.5"}`}
+            />
           </button>
           <button
             type="button"

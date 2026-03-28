@@ -5,5 +5,7 @@ export const aboutContent = {
   highlight: "Java internals",
   descriptionEnd:
     ", and it has led me to mastering the entire software delivery lifecycle.",
+  supportingText:
+    "I enjoy translating complex business needs into reliable systems, clean interfaces, and maintainable engineering foundations that teams can scale with confidence.",
   imageAlt: "About Me",
 };

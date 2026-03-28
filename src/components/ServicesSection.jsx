@@ -17,53 +17,73 @@ export default function ServicesSection() {
         </div>
         <div className={servicesStyles.grid}>
           {services.map((service, idx) => (
-            <motion.div
+            <motion.article
               key={service.title}
-              initial={{ opacity: 0, y: 60, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{
+                opacity: 0,
+                y: 36,
+                scale: 0.975,
+                filter: "blur(10px)",
+              }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               transition={{
-                type: "spring",
-                stiffness: 80,
-                damping: 14,
-                delay: idx * 0.15,
+                duration: 0.6,
+                ease: [0.22, 1, 0.36, 1],
+                delay: idx * 0.08,
               }}
               viewport={{ once: true }}
               whileHover={{
-                scale: 1.05,
-                rotate: 2,
-                boxShadow: "0 8px 32px rgba(255,140,0,0.15)",
+                y: -8,
+                scale: 1.012,
+                boxShadow: "0 24px 56px rgba(15,23,42,0.16)",
               }}
-              className={servicesStyles.card}
+              className={servicesStyles.cardShell}
             >
               <motion.div
-                className={`${servicesStyles.iconBox} bg-gradient-to-br ${serviceToneStyles[service.tone]}`}
-                whileHover={{ scale: 1.15, rotate: -8 }}
-                animate={{
-                  y: [0, -8, 0],
-                  transition: {
-                    repeat: Infinity,
-                    duration: 1.2,
-                    ease: "easeInOut",
-                  },
+                className={servicesStyles.cardBorder}
+                style={{
+                  backgroundImage: serviceToneStyles[service.tone].border,
                 }}
-              >
-                {React.createElement(service.icon, { className: "w-10 h-10" })}
-              </motion.div>
-              <h3 className={servicesStyles.cardTitle}>{service.title}</h3>
-              <p className={servicesStyles.description}>{service.desc}</p>
-              <ul className={servicesStyles.features}>
-                {service.features.map((f) => (
-                  <motion.li
-                    key={f}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: idx * 0.2 + 0.3 }}
-                  >
-                    ✓ {f}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{ duration: 10, ease: "linear", repeat: Infinity }}
+              />
+              <div
+                className={`${servicesStyles.cardGlow} ${serviceToneStyles[service.tone].glow}`}
+              />
+              <div className={servicesStyles.card}>
+                <div className={servicesStyles.cardInner}>
+                  <div className={servicesStyles.iconRow}>
+                    <div className={servicesStyles.iconFrame}>
+                      <div
+                        className={`${servicesStyles.iconHalo} ${serviceToneStyles[service.tone].iconHalo}`}
+                      />
+                      <motion.div
+                        className={`${servicesStyles.iconBox} ${serviceToneStyles[service.tone].iconBox}`}
+                        whileHover={{ scale: 1.08, rotate: -6, y: -2 }}
+                        transition={{ duration: 0.25, ease: "easeOut" }}
+                      >
+                        {React.createElement(service.icon, {
+                          className: servicesStyles.icon,
+                        })}
+                      </motion.div>
+                    </div>
+                    <h3 className={servicesStyles.cardTitle}>
+                      {service.title}
+                    </h3>
+                  </div>
+                  <p className={servicesStyles.description}>{service.desc}</p>
+                  <ul className={servicesStyles.features}>
+                    {service.features.map((f) => (
+                      <li key={f} className={servicesStyles.featureItem}>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>

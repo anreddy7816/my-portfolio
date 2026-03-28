@@ -1,42 +1,44 @@
 export const contactStyles = {
-  section: "scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20",
+  section:
+    "scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20 bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 dark:from-slate-950/80 dark:via-slate-900 dark:to-slate-950/80",
   header: "max-w-7xl mx-auto text-center mb-16",
-  title: "mb-4 text-3xl font-bold sm:text-4xl",
+  title:
+    "mb-4 text-3xl font-extrabold tracking-tight bg-gradient-to-r from-slate-950 via-amber-600 to-yellow-500 bg-clip-text text-transparent dark:from-white dark:via-orange-200 dark:to-amber-400 sm:text-4xl",
   socialRow: "mb-5 flex items-center justify-center gap-4",
   socialButton:
-    "inline-flex h-14 w-14 items-center justify-center rounded-full border text-white shadow-[0_14px_30px_rgba(15,23,42,0.12)] transition duration-300 hover:-translate-y-1 hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 dark:focus:ring-offset-slate-900",
+    "inline-flex h-14 w-14 items-center justify-center rounded-full border text-white shadow-md3 transition-all duration-md-medium ease-md-standard hover:-translate-y-1.5 hover:scale-[1.05] hover:shadow-md5 active:scale-[0.97] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 dark:focus:ring-offset-slate-900",
   socialTones: {
     dark: "border-slate-800 bg-gradient-to-br from-slate-900 to-slate-700 hover:border-slate-700 hover:from-slate-800 hover:to-slate-600 dark:border-slate-600 dark:from-slate-800 dark:to-slate-700",
     blue: "border-blue-500 bg-gradient-to-br from-blue-600 to-sky-500 hover:border-blue-400 hover:from-blue-500 hover:to-sky-400 dark:border-blue-400/70 dark:from-blue-500 dark:to-sky-500",
   },
   socialIcon: "h-6 w-6",
-  subtitle: "text-base leading-7 text-slate-700 dark:text-slate-300 sm:text-lg",
+  subtitle: "text-base leading-7 text-slate-700 dark:text-slate-100 sm:text-lg",
   grid: "max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12",
   methods: "space-y-8",
   methodRow: "flex items-start gap-6",
   methodIcon: "w-8 h-8 text-orange-400 dark:text-orange-300 flex-shrink-0",
-  methodTitle: "text-xl font-semibold mb-2",
+  methodTitle: "text-xl font-semibold mb-2 text-slate-900 dark:text-white",
   methodDescription:
-    "mb-2 text-sm leading-7 text-slate-700 dark:text-slate-300 sm:text-base",
+    "mb-2 text-sm leading-7 text-slate-700 dark:text-white/85 sm:text-base",
   methodLink: "text-orange-400 hover:text-orange-500 font-medium transition",
   locationRow:
-    "flex items-center gap-2 text-sm leading-7 text-slate-700 dark:text-slate-300 sm:text-base",
+    "flex items-center gap-2 text-sm leading-7 text-slate-700 dark:text-slate-100 sm:text-base",
   locationIcon: "w-8 h-8 text-orange-400 dark:text-orange-300",
   formCard:
-    "rounded-2xl border border-orange-200/90 bg-gradient-to-br from-white via-slate-50 to-orange-50/70 p-4 shadow-[0_16px_36px_rgba(15,23,42,0.08)] dark:border-orange-400/25 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 dark:shadow-[0_18px_40px_rgba(2,6,23,0.45)] sm:p-5",
-  formTitle: "mb-3 text-lg font-bold text-slate-900 dark:text-slate-100",
+    "relative rounded-md-xl border border-slate-200/40 bg-white/90 p-5 shadow-md3 ring-1 ring-slate-900/5 backdrop-blur-sm transition-shadow duration-md-medium ease-md-standard hover:shadow-md4 dark:border-white/[0.06] dark:bg-slate-800/90 dark:shadow-[0_18px_40px_rgba(2,6,23,0.35)] dark:ring-white/5 sm:p-6",
+  formTitle: "mb-3 text-lg font-bold text-slate-900 dark:text-white",
   form: "space-y-3",
   fieldWrapper:
     "mb-1 block text-sm font-medium text-slate-800 dark:text-slate-200",
   input:
-    "w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 transition placeholder:text-slate-500 focus:outline-none focus:border-orange-400 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400",
+    "w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-sm text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 focus:bg-white dark:border-slate-600 dark:bg-slate-700/60 dark:text-white dark:placeholder:text-slate-400 dark:focus:border-orange-400 dark:focus:ring-orange-400/15 dark:focus:bg-slate-700",
   textarea:
-    "w-full resize-none rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm leading-7 text-slate-800 transition placeholder:text-slate-500 focus:outline-none focus:border-orange-400 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400",
+    "w-full resize-none rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-sm leading-7 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 focus:bg-white dark:border-slate-600 dark:bg-slate-700/60 dark:text-white dark:placeholder:text-slate-400 dark:focus:border-orange-400 dark:focus:ring-orange-400/15 dark:focus:bg-slate-700",
   inputError:
     "border-red-400 focus:border-red-500 dark:border-red-400 dark:focus:border-red-300",
   fieldErrorText: "mt-1 text-sm text-red-600 dark:text-red-300",
   submit:
-    "w-full rounded-lg bg-orange-400 py-2 text-white font-semibold transition transform hover:scale-105 hover:bg-orange-500",
+    "w-full rounded-md-lg bg-gradient-to-r from-orange-500 to-rose-500 py-3 text-white font-semibold tracking-wide shadow-md3 transition-all duration-md-short ease-md-standard hover:-translate-y-0.5 hover:shadow-md4 hover:brightness-110 active:scale-[0.98] dark:from-orange-400 dark:to-amber-400 dark:text-slate-950",
   submitDisabled:
     "cursor-not-allowed opacity-70 hover:scale-100 hover:bg-orange-400",
   statusBase: "rounded-lg px-3 py-2 text-sm font-medium",

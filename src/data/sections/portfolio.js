@@ -1,12 +1,15 @@
 export const portfolioSectionContent = {
   title: "My Portfolio",
-  subtitle: "Explore some of my recent projects and creative works",
+  subtitle:
+    "Selected product builds with sharper UX, cleaner systems, and production-focused execution",
 };
 
 export const portfolioProjects = [
   {
-    emoji: "🌐",
-    gradient: "from-orange-400 to-orange-600",
+    icon: "commerce",
+    gradient: "from-amber-500 via-orange-500 to-rose-500",
+    category: "Commerce System",
+    accent: "Payments + Ops",
     title: "E-Commerce Platform",
     description:
       "Full-featured online store with product catalog, shopping cart, and secure payment integration.",
@@ -36,11 +39,13 @@ export const portfolioProjects = [
     },
   },
   {
-    emoji: "📊",
-    gradient: "from-green-400 to-green-600",
+    icon: "analytics",
+    gradient: "from-emerald-400 via-teal-500 to-cyan-500",
+    category: "Insight Dashboard",
+    accent: "Realtime Reporting",
     title: "Analytics Dashboard",
     description:
-      "Real-time data visualization dashboard with interactive charts and comprehensive reporting features.",
+      "Real-time data visualization dashboard with interactive charts and comprehensive reporting.",
     tags: ["React", "D3.js", "AWS"],
     tone: "green",
     modal: {
@@ -67,12 +72,14 @@ export const portfolioProjects = [
     },
   },
   {
-    emoji: "💬",
-    gradient: "from-purple-400 to-purple-600",
+    icon: "chat",
+    gradient: "from-fuchsia-500 via-violet-500 to-indigo-500",
+    category: "Realtime Messaging",
+    accent: "Collaboration Core",
     title: "Chat Application",
     description:
       "Real-time messaging app with user authentication, group chats, and file sharing capabilities.",
-    tags: ["Socket.io", "Node.js", "PostgreSQL"],
+    tags: ["Socket.io", "Node.js", "react"],
     tone: "purple",
     modal: {
       overview:

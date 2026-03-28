@@ -5,6 +5,7 @@ import { homeStyles } from "../styles/componentStyles";
 export default function HomeSection() {
   return (
     <section id="home" className={homeStyles.section}>
+      <div className={homeStyles.glow} aria-hidden="true" />
       <div className={homeStyles.wrapper}>
         <div className={homeStyles.emoji}>{homeContent.emoji}</div>
         <h1 className={homeStyles.title}>{homeContent.title}</h1>
