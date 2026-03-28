@@ -31,6 +31,9 @@ export const contactSectionContent = {
     },
   ],
   location: {
+    title: "Location",
+    description:
+      "Based in India, available for remote collaboration worldwide.",
     value: "Guntur, Andhra Pradesh, INDIA",
     icon: "location",
   },

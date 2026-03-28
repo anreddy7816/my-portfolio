@@ -3,7 +3,7 @@ export const navbarStyles = {
   wrapper: "max-w-7xl mx-auto flex justify-between items-center",
   brandGroup: "flex items-center gap-3 md:gap-4",
   brandImage:
-    "w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full shadow-md2 ring-2 ring-white/10 transition-all duration-md-medium ease-md-standard hover:scale-110 hover:ring-orange-400/40 hover:shadow-md4 cursor-pointer",
+    "w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full shadow-md2 ring-2 ring-white/10 transition-all duration-md-medium ease-md-standard hover:scale-[1.5] hover:ring-orange-400/40 hover:shadow-md4 cursor-pointer",
   brandText:
     "text-xl md:text-2xl font-bold tracking-tight bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(147,197,253,0.35)]",
   brandAccent: "text-orange-400",

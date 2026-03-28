@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
   EnvelopeIcon,
   PhoneIcon,
@@ -180,155 +181,236 @@ export default function ContactSection() {
   return (
     <>
       <section id="contact" className={contactStyles.section}>
-        <div className={contactStyles.header}>
-          <h2 className={contactStyles.title}>{contactSectionContent.title}</h2>
-          <div className={contactStyles.socialRow}>
-            {contactSectionContent.socialLinks.map((link) => {
-              const SocialIcon = socialIconMap[link.label];
+        {/* Decorative glow blobs */}
+        <div className={contactStyles.glowA} />
+        <div className={contactStyles.glowB} />
 
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`${contactStyles.socialButton} ${contactStyles.socialTones[link.tone]}`}
-                  aria-label={link.label}
-                  title={link.label}
-                >
-                  <SocialIcon className={contactStyles.socialIcon} />
-                </a>
-              );
-            })}
-          </div>
-          <p className={contactStyles.subtitle}>
-            {contactSectionContent.subtitle}
-          </p>
-        </div>
-        <div className={contactStyles.grid}>
-          <div className={contactStyles.methods}>
-            {contactSectionContent.methods.map((method) => {
-              const Icon = iconMap[method.icon];
+        <div className={contactStyles.innerWrap}>
+          {/* Header with title, socials, subtitle */}
+          <motion.div
+            className={contactStyles.header}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+          >
+            <h2 className={contactStyles.title}>
+              {contactSectionContent.title}
+            </h2>
+            <div className={contactStyles.socialRow}>
+              {contactSectionContent.socialLinks.map((link) => {
+                const SocialIcon = socialIconMap[link.label];
 
-              return (
-                <div key={method.title} className={contactStyles.methodRow}>
-                  <Icon className={contactStyles.methodIcon} />
-                  <div>
-                    <h3 className={contactStyles.methodTitle}>
-                      {method.title}
-                    </h3>
-                    <p className={contactStyles.methodDescription}>
-                      {method.description}
-                    </p>
-                    <a href={method.href} className={contactStyles.methodLink}>
-                      {method.value}
-                    </a>
-                  </div>
-                </div>
-              );
-            })}
-            <div className={contactStyles.locationRow}>
-              <MapPinIcon className={contactStyles.locationIcon} />
-              <span>{contactSectionContent.location.value}</span>
-            </div>
-          </div>
-          <div className={contactStyles.formCard}>
-            <h3 className={contactStyles.formTitle}>
-              {contactSectionContent.form.title}
-            </h3>
-            <form
-              className={contactStyles.form}
-              onSubmit={handleSubmit}
-              noValidate
-            >
-              {contactSectionContent.form.fields.map((field) => (
-                <div key={field.name}>
-                  <label
-                    htmlFor={field.name}
-                    className={contactStyles.fieldWrapper}
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`${contactStyles.socialButton} ${contactStyles.socialTones[link.tone]}`}
+                    aria-label={link.label}
+                    title={link.label}
                   >
-                    {field.label}
-                  </label>
-                  {field.type === "textarea" ? (
-                    <textarea
-                      id={field.name}
-                      name={field.name}
-                      rows={field.rows}
-                      placeholder={field.placeholder}
-                      value={formValues[field.name]}
-                      onChange={handleChange}
-                      disabled={submitState.status === "loading"}
-                      aria-invalid={Boolean(fieldErrors[field.name])}
-                      aria-describedby={
-                        fieldErrors[field.name]
-                          ? `${field.name}-error`
-                          : undefined
-                      }
-                      required
-                      className={`${contactStyles.textarea} ${
-                        fieldErrors[field.name] ? contactStyles.inputError : ""
-                      }`}
+                    <span
+                      className={`${contactStyles.socialGlow} ${contactStyles.socialGlowTones[link.tone]}`}
                     />
-                  ) : (
-                    <input
-                      id={field.name}
-                      name={field.name}
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      value={formValues[field.name]}
-                      onChange={handleChange}
-                      disabled={submitState.status === "loading"}
-                      aria-invalid={Boolean(fieldErrors[field.name])}
-                      aria-describedby={
-                        fieldErrors[field.name]
-                          ? `${field.name}-error`
-                          : undefined
-                      }
-                      required
-                      className={`${contactStyles.input} ${
-                        fieldErrors[field.name] ? contactStyles.inputError : ""
-                      }`}
-                    />
-                  )}
-                  {fieldErrors[field.name] ? (
-                    <p
-                      id={`${field.name}-error`}
-                      className={contactStyles.fieldErrorText}
-                    >
-                      {fieldErrors[field.name]}
-                    </p>
-                  ) : null}
-                </div>
-              ))}
-              {submitState.message ? (
-                <p
-                  className={`${contactStyles.statusBase} ${
-                    submitState.status === "error"
-                      ? contactStyles.statusError
-                      : contactStyles.statusLoading
-                  }`}
-                  role="status"
-                  aria-live={
-                    submitState.status === "error" ? "assertive" : "polite"
-                  }
-                >
-                  {submitState.message}
-                </p>
-              ) : null}
-              <button
-                type="submit"
-                disabled={submitState.status === "loading"}
-                className={`${contactStyles.submit} ${
-                  submitState.status === "loading"
-                    ? contactStyles.submitDisabled
-                    : ""
-                }`}
+                    <SocialIcon className={contactStyles.socialIcon} />
+                  </a>
+                );
+              })}
+            </div>
+            <p className={contactStyles.subtitle}>
+              {contactSectionContent.subtitle}
+            </p>
+          </motion.div>
+
+          <div className={contactStyles.grid}>
+            {/* Left column — method cards */}
+            <div className={contactStyles.methods}>
+              {contactSectionContent.methods.map((method, idx) => {
+                const Icon = iconMap[method.icon];
+
+                return (
+                  <motion.div
+                    key={method.title}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                      delay: idx * 0.1,
+                    }}
+                    viewport={{ once: true }}
+                    className={contactStyles.methodCard}
+                  >
+                    <span className={contactStyles.methodIconCircle}>
+                      <Icon className={contactStyles.methodIconInner} />
+                    </span>
+                    <div>
+                      <h3 className={contactStyles.methodTitle}>
+                        {method.title}
+                      </h3>
+                      <p className={contactStyles.methodDescription}>
+                        {method.description}
+                      </p>
+                      <a
+                        href={method.href}
+                        className={contactStyles.methodLink}
+                      >
+                        {method.value}
+                      </a>
+                    </div>
+                  </motion.div>
+                );
+              })}
+
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: 0.2,
+                }}
+                viewport={{ once: true }}
+                className={contactStyles.methodCard}
               >
-                {submitState.status === "loading"
-                  ? contactSectionContent.form.submittingLabel
-                  : contactSectionContent.form.submitLabel}
-              </button>
-            </form>
+                <span className={contactStyles.methodIconCircle}>
+                  <MapPinIcon className={contactStyles.methodIconInner} />
+                </span>
+                <div>
+                  <h3 className={contactStyles.methodTitle}>
+                    {contactSectionContent.location.title}
+                  </h3>
+                  <p className={contactStyles.methodDescription}>
+                    {contactSectionContent.location.description}
+                  </p>
+                  <span className={contactStyles.methodLink}>
+                    {contactSectionContent.location.value}
+                  </span>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right column — form card */}
+            <motion.div
+              initial={{ opacity: 0, y: 36, scale: 0.975 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 0.6,
+                ease: [0.22, 1, 0.36, 1],
+                delay: 0.15,
+              }}
+              viewport={{ once: true }}
+              className={contactStyles.formCardShell}
+            >
+              <div className={contactStyles.formCard}>
+                <div className={contactStyles.formBody}>
+                  <h3 className={contactStyles.formTitle}>
+                    {contactSectionContent.form.title}
+                  </h3>
+                  <form
+                    className={contactStyles.form}
+                    onSubmit={handleSubmit}
+                    noValidate
+                  >
+                    {contactSectionContent.form.fields.map((field) => (
+                      <div key={field.name}>
+                        <label
+                          htmlFor={field.name}
+                          className={contactStyles.fieldWrapper}
+                        >
+                          {field.label}
+                        </label>
+                        {field.type === "textarea" ? (
+                          <textarea
+                            id={field.name}
+                            name={field.name}
+                            rows={field.rows}
+                            placeholder={field.placeholder}
+                            value={formValues[field.name]}
+                            onChange={handleChange}
+                            disabled={submitState.status === "loading"}
+                            aria-invalid={Boolean(fieldErrors[field.name])}
+                            aria-describedby={
+                              fieldErrors[field.name]
+                                ? `${field.name}-error`
+                                : undefined
+                            }
+                            required
+                            className={`${contactStyles.textarea} ${
+                              fieldErrors[field.name]
+                                ? contactStyles.inputError
+                                : ""
+                            }`}
+                          />
+                        ) : (
+                          <input
+                            id={field.name}
+                            name={field.name}
+                            type={field.type}
+                            placeholder={field.placeholder}
+                            value={formValues[field.name]}
+                            onChange={handleChange}
+                            disabled={submitState.status === "loading"}
+                            aria-invalid={Boolean(fieldErrors[field.name])}
+                            aria-describedby={
+                              fieldErrors[field.name]
+                                ? `${field.name}-error`
+                                : undefined
+                            }
+                            required
+                            className={`${contactStyles.input} ${
+                              fieldErrors[field.name]
+                                ? contactStyles.inputError
+                                : ""
+                            }`}
+                          />
+                        )}
+                        {fieldErrors[field.name] ? (
+                          <p
+                            id={`${field.name}-error`}
+                            className={contactStyles.fieldErrorText}
+                          >
+                            {fieldErrors[field.name]}
+                          </p>
+                        ) : null}
+                      </div>
+                    ))}
+                    {submitState.message ? (
+                      <p
+                        className={`${contactStyles.statusBase} ${
+                          submitState.status === "error"
+                            ? contactStyles.statusError
+                            : contactStyles.statusLoading
+                        }`}
+                        role="status"
+                        aria-live={
+                          submitState.status === "error"
+                            ? "assertive"
+                            : "polite"
+                        }
+                      >
+                        {submitState.message}
+                      </p>
+                    ) : null}
+                    <button
+                      type="submit"
+                      disabled={submitState.status === "loading"}
+                      className={`${contactStyles.submit} ${
+                        submitState.status === "loading"
+                          ? contactStyles.submitDisabled
+                          : ""
+                      }`}
+                    >
+                      {submitState.status === "loading"
+                        ? contactSectionContent.form.submittingLabel
+                        : contactSectionContent.form.submitLabel}
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

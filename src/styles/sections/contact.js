@@ -1,31 +1,48 @@
 export const contactStyles = {
   section:
-    "scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20 bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 dark:from-slate-950/80 dark:via-slate-900 dark:to-slate-950/80",
+    "relative scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20 overflow-hidden bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 dark:from-slate-950/80 dark:via-slate-900 dark:to-slate-950/80",
+  /* Decorative ambient glow blobs */
+  glowA:
+    "pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-orange-300/20 blur-[100px] dark:bg-orange-500/10",
+  glowB:
+    "pointer-events-none absolute -bottom-40 -right-40 h-[380px] w-[380px] rounded-full bg-sky-300/20 blur-[100px] dark:bg-sky-500/10",
+  innerWrap: "relative z-10",
   header: "max-w-7xl mx-auto text-center mb-16",
   title:
     "mb-4 text-3xl font-extrabold tracking-tight bg-gradient-to-r from-slate-950 via-amber-600 to-yellow-500 bg-clip-text text-transparent dark:from-white dark:via-orange-200 dark:to-amber-400 sm:text-4xl",
   socialRow: "mb-5 flex items-center justify-center gap-4",
   socialButton:
-    "inline-flex h-14 w-14 items-center justify-center rounded-full border text-white shadow-md3 transition-all duration-md-medium ease-md-standard hover:-translate-y-1.5 hover:scale-[1.05] hover:shadow-md5 active:scale-[0.97] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 dark:focus:ring-offset-slate-900",
+    "group relative inline-flex h-14 w-14 items-center justify-center rounded-full border text-white shadow-md3 transition-all duration-md-medium ease-md-standard hover:-translate-y-1.5 hover:scale-[1.05] hover:shadow-md5 active:scale-[0.97] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 dark:focus:ring-offset-slate-900",
+  socialGlow:
+    "pointer-events-none absolute inset-0 rounded-full opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-60",
+  socialGlowTones: {
+    dark: "bg-slate-500/40",
+    blue: "bg-sky-400/40",
+  },
   socialTones: {
     dark: "border-slate-800 bg-gradient-to-br from-slate-900 to-slate-700 hover:border-slate-700 hover:from-slate-800 hover:to-slate-600 dark:border-slate-600 dark:from-slate-800 dark:to-slate-700",
     blue: "border-blue-500 bg-gradient-to-br from-blue-600 to-sky-500 hover:border-blue-400 hover:from-blue-500 hover:to-sky-400 dark:border-blue-400/70 dark:from-blue-500 dark:to-sky-500",
   },
-  socialIcon: "h-6 w-6",
+  socialIcon: "relative z-10 h-6 w-6",
   subtitle: "text-base leading-7 text-slate-700 dark:text-slate-100 sm:text-lg",
-  grid: "max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12",
-  methods: "space-y-8",
-  methodRow: "flex items-start gap-6",
-  methodIcon: "w-8 h-8 text-orange-400 dark:text-orange-300 flex-shrink-0",
-  methodTitle: "text-xl font-semibold mb-2 text-slate-900 dark:text-white",
+  grid: "max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start",
+  methods: "space-y-5",
+  methodCard:
+    "group flex items-start gap-5 rounded-md-xl border border-slate-200/50 bg-white/70 p-5 shadow-md2 ring-1 ring-slate-900/5 backdrop-blur-sm transition-all duration-md-medium ease-md-standard hover:shadow-md4 hover:-translate-y-0.5 dark:border-white/[0.06] dark:bg-slate-800/60 dark:ring-white/5",
+  methodIconCircle:
+    "flex-shrink-0 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 via-rose-500 to-sky-500 shadow-md2 ring-2 ring-white/80 transition-transform duration-300 ease-md-standard group-hover:scale-110 dark:ring-slate-900/60",
+  methodIconInner: "h-6 w-6 text-white",
+  methodTitle: "text-lg font-semibold mb-1 text-slate-900 dark:text-white",
   methodDescription:
-    "mb-2 text-sm leading-7 text-slate-700 dark:text-white/85 sm:text-base",
-  methodLink: "text-orange-400 hover:text-orange-500 font-medium transition",
-  locationRow:
-    "flex items-center gap-2 text-sm leading-7 text-slate-700 dark:text-slate-100 sm:text-base",
-  locationIcon: "w-8 h-8 text-orange-400 dark:text-orange-300",
+    "mb-2 text-sm leading-6 text-slate-600 dark:text-white/75 sm:text-base",
+  methodLink:
+    "inline-flex items-center gap-1 text-sm font-medium text-orange-500 transition-colors duration-200 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300",
+
+  formCardShell:
+    "rounded-md-xl bg-gradient-to-br from-orange-400 via-rose-500 to-sky-500 p-[1.5px] shadow-md3 transition-shadow duration-md-medium ease-md-standard hover:shadow-md4",
   formCard:
-    "relative rounded-md-xl border border-slate-200/40 bg-white/90 p-5 shadow-md3 ring-1 ring-slate-900/5 backdrop-blur-sm transition-shadow duration-md-medium ease-md-standard hover:shadow-md4 dark:border-white/[0.06] dark:bg-slate-800/90 dark:shadow-[0_18px_40px_rgba(2,6,23,0.35)] dark:ring-white/5 sm:p-6",
+    "rounded-[calc(var(--radius-md-xl,16px)-1.5px)] bg-white/95 backdrop-blur-sm dark:bg-slate-800/95",
+  formBody: "p-5 sm:p-6",
   formTitle: "mb-3 text-lg font-bold text-slate-900 dark:text-white",
   form: "space-y-3",
   fieldWrapper:
@@ -38,7 +55,7 @@ export const contactStyles = {
     "border-red-400 focus:border-red-500 dark:border-red-400 dark:focus:border-red-300",
   fieldErrorText: "mt-1 text-sm text-red-600 dark:text-red-300",
   submit:
-    "w-full rounded-md-lg bg-gradient-to-r from-orange-500 to-rose-500 py-3 text-white font-semibold tracking-wide shadow-md3 transition-all duration-md-short ease-md-standard hover:-translate-y-0.5 hover:shadow-md4 hover:brightness-110 active:scale-[0.98] dark:from-orange-400 dark:to-amber-400 dark:text-slate-950",
+    "w-full rounded-md-lg bg-gradient-to-r from-orange-500 via-rose-500 to-sky-500 py-3 text-white font-semibold tracking-wide shadow-md3 transition-all duration-md-short ease-md-standard hover:-translate-y-0.5 hover:shadow-md4 hover:brightness-110 active:scale-[0.98] dark:from-orange-400 dark:via-rose-400 dark:to-sky-400 dark:text-slate-950",
   submitDisabled:
     "cursor-not-allowed opacity-70 hover:scale-100 hover:bg-orange-400",
   statusBase: "rounded-lg px-3 py-2 text-sm font-medium",
