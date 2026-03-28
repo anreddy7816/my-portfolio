@@ -1,5 +1,6 @@
 export const servicesStyles = {
-  section: "scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20",
+  section:
+    "scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20 scroll-snap-align-start",
   wrapper: "mx-auto max-w-6xl",
   heading: "mx-auto mb-12 max-w-3xl text-center",
   title:

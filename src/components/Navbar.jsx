@@ -1,9 +1,15 @@
 import React, { useId, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import NagiImage from "../assets/nagi.png";
 import { navigationLinks } from "../data/siteContent";
 import { navbarStyles } from "../styles/componentStyles";
 
-export default function Navbar({ theme, setTheme, onOpenResume }) {
+export default function Navbar({
+  theme,
+  setTheme,
+  onOpenResume,
+  activeSection,
+}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mobileMenuId = useId();
 
@@ -16,6 +22,9 @@ export default function Navbar({ theme, setTheme, onOpenResume }) {
       setMobileMenuOpen(false);
     }
   };
+
+  const isActive = (item) =>
+    item.type === "link" && item.href === `#${activeSection}`;
 
   return (
     <nav className={navbarStyles.nav} aria-label="Primary">
@@ -33,7 +42,7 @@ export default function Navbar({ theme, setTheme, onOpenResume }) {
                 <a
                   key={item.label}
                   href={item.href}
-                  className={navbarStyles.link}
+                  className={`${navbarStyles.link} ${isActive(item) ? navbarStyles.linkActive : ""}`}
                 >
                   {item.label}
                 </a>
@@ -69,7 +78,9 @@ export default function Navbar({ theme, setTheme, onOpenResume }) {
             type="button"
             className={navbarStyles.mobileButton}
             onClick={() => setMobileMenuOpen((open) => !open)}
-            aria-label="Open mobile menu"
+            aria-label={
+              mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"
+            }
             aria-expanded={mobileMenuOpen}
             aria-controls={mobileMenuId}
           >
@@ -80,42 +91,66 @@ export default function Navbar({ theme, setTheme, onOpenResume }) {
               strokeWidth="2"
               viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              {mobileMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
             </svg>
           </button>
         </div>
       </div>
-      {mobileMenuOpen && (
-        <div className={navbarStyles.mobileMenu} id={mobileMenuId}>
-          <div className={navbarStyles.mobileLinks}>
-            {navigationLinks.map((item) =>
-              item.type === "link" ? (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={navbarStyles.link}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <button
-                  key={item.label}
-                  type="button"
-                  onClick={() => handleNavAction(item, true)}
-                  className={navbarStyles.mobileAction}
-                >
-                  {item.label}
-                </button>
-              ),
-            )}
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            className={navbarStyles.mobileMenu}
+            id={mobileMenuId}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            style={{ overflow: "hidden" }}
+          >
+            <div className={navbarStyles.mobileLinks}>
+              {navigationLinks.map((item, i) =>
+                item.type === "link" ? (
+                  <motion.a
+                    key={item.label}
+                    href={item.href}
+                    className={`${navbarStyles.link} ${isActive(item) ? navbarStyles.linkActive : ""}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.04, duration: 0.25 }}
+                  >
+                    {item.label}
+                  </motion.a>
+                ) : (
+                  <motion.button
+                    key={item.label}
+                    type="button"
+                    onClick={() => handleNavAction(item, true)}
+                    className={navbarStyles.mobileAction}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.04, duration: 0.25 }}
+                  >
+                    {item.label}
+                  </motion.button>
+                ),
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

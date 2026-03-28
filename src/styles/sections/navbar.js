@@ -11,6 +11,7 @@ export const navbarStyles = {
   desktopLinks:
     "hidden md:flex space-x-8 font-medium text-sm tracking-wide uppercase text-slate-300",
   link: "relative hover:text-orange-400 transition-colors duration-md-short ease-md-standard after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-orange-400 after:transition-all after:duration-md-medium hover:after:w-full",
+  linkActive: "text-orange-400 after:w-full",
   themeButton:
     "relative inline-flex items-center h-7 w-12 rounded-full bg-gradient-to-r from-sky-600 to-indigo-600 ring-1 ring-white/20 shadow-md1 transition-all duration-md-medium ease-md-standard focus:outline-none hover:ring-2 hover:ring-amber-400 hover:shadow-md2 dark:from-indigo-700 dark:to-purple-700 dark:ring-purple-400/30",
   mobileButton:

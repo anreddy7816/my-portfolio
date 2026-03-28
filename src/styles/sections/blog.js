@@ -1,5 +1,6 @@
 export const blogStyles = {
-  section: "relative py-20 px-2 sm:px-4 md:px-10 scroll-mt-24 overflow-hidden",
+  section:
+    "relative py-20 px-2 sm:px-4 md:px-10 scroll-mt-24 overflow-hidden scroll-snap-align-start",
   wrapper: "mx-auto max-w-6xl",
   heading: "text-center mb-16",
   title:

@@ -1,6 +1,6 @@
 export const homeStyles = {
   section:
-    "relative min-h-screen px-4 py-24 sm:px-6 md:px-10 md:py-32 flex items-center justify-center overflow-hidden",
+    "relative min-h-screen px-4 py-24 sm:px-6 md:px-10 md:py-32 flex items-center justify-center overflow-hidden scroll-snap-align-start",
   glow: "pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-gradient-radial from-orange-200/30 via-amber-100/10 to-transparent blur-3xl dark:from-orange-500/10 dark:via-amber-500/5 dark:to-transparent",
   wrapper: "relative z-10 mx-auto max-w-5xl text-center",
   emoji:

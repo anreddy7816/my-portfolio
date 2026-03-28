@@ -1,5 +1,6 @@
 export const documentsStyles = {
-  section: "scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20",
+  section:
+    "scroll-mt-24 px-4 py-16 sm:px-6 md:px-10 md:py-20 scroll-snap-align-start",
   wrapper: "max-w-7xl mx-auto",
   heading: "text-center mb-16",
   title:

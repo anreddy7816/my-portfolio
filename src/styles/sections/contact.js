@@ -1,5 +1,6 @@
 export const contactStyles = {
-  section: "relative scroll-mt-24 px-0 py-0 overflow-hidden",
+  section:
+    "relative scroll-mt-24 px-0 pt-0 pb-16 md:pb-24 overflow-hidden scroll-snap-align-start",
   /* Subtle ambient glows — barely visible, just adds warmth */
   glowA:
     "pointer-events-none absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-orange-200/[0.07] blur-[140px] dark:bg-orange-500/[0.04]",

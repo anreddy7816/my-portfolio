@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { homeContent } from "../data/siteContent";
 import { homeStyles } from "../styles/componentStyles";
 
+function useTypedText(text, speed = 40) {
+  const [displayed, setDisplayed] = useState("");
+  const prefersReduced = useReducedMotion();
+
+  useEffect(() => {
+    if (prefersReduced) {
+      setDisplayed(text);
+      return;
+    }
+    setDisplayed("");
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setDisplayed(text.slice(0, i));
+      if (i >= text.length) clearInterval(id);
+    }, speed);
+    return () => clearInterval(id);
+  }, [text, speed, prefersReduced]);
+
+  return displayed;
+}
+
 export default function HomeSection() {
   const prefersReducedMotion = useReducedMotion();
+  const fullIntro = `${homeContent.introPrefix} ${homeContent.name}${homeContent.introSuffix}`;
+  const typed = useTypedText(fullIntro, 35);
 
   return (
     <section id="home" className={homeStyles.section}>
@@ -45,9 +69,20 @@ export default function HomeSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
         >
-          {homeContent.introPrefix}{" "}
-          <span className={homeStyles.name}>{homeContent.name}</span>
-          {homeContent.introSuffix}
+          {(() => {
+            const name = homeContent.name;
+            const idx = typed.indexOf(name);
+            if (idx === -1) return typed;
+            return (
+              <>
+                {typed.slice(0, idx)}
+                <span className={homeStyles.name}>
+                  {typed.slice(idx, idx + name.length)}
+                </span>
+                {typed.slice(idx + name.length)}
+              </>
+            );
+          })()}
         </motion.p>
         <motion.a
           href={homeContent.ctaHref}

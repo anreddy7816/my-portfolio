@@ -1,5 +1,6 @@
 export const portfolioStyles = {
-  section: "scroll-mt-24 px-2 pt-4 pb-12 sm:px-4 md:px-10 md:pt-6 md:pb-20",
+  section:
+    "scroll-mt-24 px-2 pt-4 pb-12 sm:px-4 md:px-10 md:pt-6 md:pb-20 scroll-snap-align-start",
   wrapper: "mx-auto w-full max-w-6xl",
   heading:
     "mx-auto mb-16 max-w-3xl text-center transition-all duration-700 ease-out",

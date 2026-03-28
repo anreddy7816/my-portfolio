@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
 import HomeSection from "./components/HomeSection";
@@ -24,12 +30,26 @@ export default function App() {
   const [showResume, setShowResume] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const rafId = useRef(0);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
     localStorage.setItem("theme", theme);
   }, [theme]);
+
+  const sectionIds = useMemo(
+    () => [
+      "home",
+      "about",
+      "portfolio",
+      "services",
+      "blog",
+      "documents",
+      "contact",
+    ],
+    [],
+  );
 
   const handleScroll = useCallback(() => {
     if (rafId.current) return;
@@ -39,9 +59,19 @@ export default function App() {
         document.documentElement.scrollHeight - window.innerHeight;
       setScrollProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
       setShowScrollTop(scrollTop > 400);
+
+      // Active section detection
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && el.getBoundingClientRect().top <= 150) {
+          setActiveSection(sectionIds[i]);
+          break;
+        }
+      }
+
       rafId.current = 0;
     });
-  }, []);
+  }, [sectionIds]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -80,6 +110,7 @@ export default function App() {
         theme={theme}
         setTheme={setTheme}
         onOpenResume={() => setShowResume(true)}
+        activeSection={activeSection}
       />
       <main id="main-content" className={appStyles.main}>
         <HomeSection />
@@ -102,7 +133,7 @@ export default function App() {
             exit={{ opacity: 0, scale: 0.6, y: 20 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 z-[150] h-12 w-12 rounded-full bg-gradient-to-br from-orange-500 to-rose-500 text-white shadow-md3 hover:shadow-md5 hover:scale-110 transition-all duration-300 flex items-center justify-center cursor-pointer"
+            className="fixed bottom-6 right-6 sm:bottom-6 sm:right-6 z-[150] h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-gradient-to-br from-orange-500 to-rose-500 text-white shadow-md3 hover:shadow-md5 hover:scale-110 transition-all duration-300 flex items-center justify-center cursor-pointer"
             aria-label="Scroll to top"
             title="Back to top"
           >

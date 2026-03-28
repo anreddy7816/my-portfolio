@@ -1,5 +1,6 @@
 export const aboutStyles = {
-  section: "scroll-mt-24 px-4 py-12 pb-24 sm:px-6 md:px-10 md:py-16 md:pb-32",
+  section:
+    "scroll-mt-24 px-4 py-12 pb-24 sm:px-6 md:px-10 md:py-16 md:pb-32 scroll-snap-align-start",
   wrapper: "mx-auto max-w-5xl",
   grid: "grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14",
   title:

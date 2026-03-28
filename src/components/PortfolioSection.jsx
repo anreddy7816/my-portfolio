@@ -187,18 +187,26 @@ export default function PortfolioSection() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const tiltRefs = useRef([]);
+  const tiltRaf = useRef([]);
 
   const handleTiltMove = useCallback((e, i) => {
-    const card = tiltRefs.current[i];
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateY = ((x - centerX) / centerX) * 6;
-    const rotateX = ((centerY - y) / centerY) * 6;
-    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.01)`;
+    if (tiltRaf.current[i]) return;
+    tiltRaf.current[i] = requestAnimationFrame(() => {
+      const card = tiltRefs.current[i];
+      if (!card) {
+        tiltRaf.current[i] = 0;
+        return;
+      }
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateY = ((x - centerX) / centerX) * 6;
+      const rotateX = ((centerY - y) / centerY) * 6;
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.01)`;
+      tiltRaf.current[i] = 0;
+    });
   }, []);
 
   const handleTiltLeave = useCallback((i) => {
