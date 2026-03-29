@@ -81,9 +81,8 @@ function ProjectModal({ project, onClose }) {
     <div
       className={portfolioStyles.modalOverlay}
       style={{
-        top: "64px",
-        backdropFilter: "blur(6px)",
-        backgroundColor: "rgba(0,0,0,0.6)",
+        backdropFilter: "blur(8px)",
+        backgroundColor: "rgba(0,0,0,0.55)",
       }}
       onClick={onClose}
     >
@@ -91,8 +90,8 @@ function ProjectModal({ project, onClose }) {
         ref={containerRef}
         className={portfolioStyles.modalContainer}
         style={{
-          maxHeight: "calc(100vh - 120px)",
-          animation: "modalSlideUp 0.35s cubic-bezier(0.34,1.3,0.64,1) both",
+          maxHeight: "calc(100vh - 140px)",
+          animation: "modalSlideUp 0.4s cubic-bezier(0.34,1.3,0.64,1) both",
         }}
         role="dialog"
         aria-modal="true"
@@ -126,14 +125,14 @@ function ProjectModal({ project, onClose }) {
             <ul className={portfolioStyles.modalFeatureList}>
               {modal.features.map((f) => (
                 <li key={f} className={portfolioStyles.modalFeatureItem}>
-                  <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-slate-500 dark:text-slate-400" />
+                  <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500 dark:text-emerald-400" />
                   {f}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="mb-8">
+          <div className="mb-6">
             <h4 className={portfolioStyles.modalSectionTitle}>Tech Stack</h4>
             <div className={portfolioStyles.modalTechStack}>
               {modal.techStack.map((t) => (

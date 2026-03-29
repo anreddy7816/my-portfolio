@@ -32,35 +32,37 @@ export const portfolioStyles = {
   viewButton:
     "inline-flex items-center gap-2 rounded-md-xl border border-slate-300/50 bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-md2 transition-all duration-md-short ease-md-standard hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-md3 active:scale-[0.97] dark:border-white/10 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100",
   modalOverlay:
-    "fixed bottom-0 left-0 right-0 z-[90] flex items-start justify-center px-4 pt-16",
+    "fixed top-[58px] md:top-[66px] right-0 bottom-0 left-0 z-[90] flex items-start justify-center overflow-y-auto px-4 pt-8 pb-6 sm:pt-12",
   modalContainer:
-    "relative w-full max-w-3xl overflow-y-auto rounded-[32px] border border-slate-200/80 bg-white/95 shadow-[0_32px_100px_rgba(15,23,42,0.24)] backdrop-blur dark:border-white/10 dark:bg-slate-950/95",
-  modalHeader: "flex items-center justify-between px-7 pb-2 pt-7",
+    "relative w-full max-w-3xl overflow-y-auto rounded-[28px] border border-slate-200/60 bg-gradient-to-b from-white via-white to-slate-50/80 shadow-[0_40px_120px_rgba(15,23,42,0.30),0_8px_32px_rgba(15,23,42,0.12)] ring-1 ring-black/[0.04] backdrop-blur-xl dark:border-white/[0.08] dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-900/98 dark:to-slate-950 dark:shadow-[0_40px_120px_rgba(0,0,0,0.55),0_0_0_1px_rgba(255,255,255,0.06)] dark:ring-white/[0.04]",
+  modalHeader:
+    "relative flex items-center justify-between border-b border-slate-100 px-8 pb-5 pt-8 dark:border-white/[0.06]",
   modalTitle:
-    "text-2xl font-semibold tracking-tight text-slate-950 dark:text-white",
+    "text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl dark:text-white",
   closeButton:
-    "flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-base font-bold text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10",
-  modalBody: "px-7 pb-7 pt-3",
+    "flex h-9 w-9 items-center justify-center rounded-full border-0 bg-red-500/90 text-sm font-bold text-white shadow-lg shadow-red-500/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-red-600 hover:shadow-xl hover:shadow-red-500/30 active:scale-90 dark:bg-red-500/80 dark:shadow-red-500/20 dark:hover:bg-red-500",
+  modalBody: "px-8 pb-8 pt-6",
   modalOverview:
-    "mb-8 max-w-2xl text-sm leading-7 text-slate-700 dark:text-slate-200 sm:text-base",
-  modalSection: "mb-6",
+    "mb-8 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300 sm:text-lg sm:leading-8",
+  modalSection: "mb-8",
   modalSectionTitle:
-    "mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-300",
+    "mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-400",
   modalFeatureList: "grid grid-cols-1 gap-3 sm:grid-cols-2",
   modalFeatureItem:
-    "flex items-start gap-3 rounded-2xl border border-slate-200/80 bg-slate-50/70 px-4 py-3 text-sm leading-6 text-slate-800 dark:border-white/10 dark:bg-white/5 dark:text-slate-200",
-  modalTechStack: "flex flex-wrap gap-2",
+    "flex items-start gap-3 rounded-xl border border-slate-200/70 bg-gradient-to-br from-slate-50 to-white px-4 py-3.5 text-sm leading-6 text-slate-700 shadow-sm transition-colors duration-200 hover:border-slate-300/80 hover:shadow-md dark:border-white/[0.08] dark:bg-gradient-to-br dark:from-white/[0.04] dark:to-white/[0.01] dark:text-slate-200 dark:hover:border-white/[0.14]",
+  modalTechStack: "flex flex-wrap gap-2.5",
   modalTechItem:
-    "cursor-default rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200",
-  modalActions: "flex flex-wrap gap-3 pt-2",
+    "cursor-default rounded-lg border border-slate-200/80 bg-gradient-to-b from-white to-slate-50 px-3.5 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-white/[0.08] dark:bg-gradient-to-b dark:from-white/[0.06] dark:to-white/[0.02] dark:text-slate-200 dark:hover:border-white/[0.14]",
+  modalActions:
+    "flex flex-wrap gap-3 border-t border-slate-100 pt-6 dark:border-white/[0.06]",
   primaryAction:
-    "inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100",
+    "inline-flex items-center gap-2 rounded-xl bg-gradient-to-b from-slate-800 to-slate-950 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-950/20 ring-1 ring-slate-900/10 transition-all duration-200 hover:-translate-y-0.5 hover:from-slate-700 hover:to-slate-900 hover:shadow-xl active:scale-[0.97] dark:from-white dark:to-slate-100 dark:text-slate-950 dark:shadow-white/10 dark:ring-white/20 dark:hover:from-slate-50 dark:hover:to-white",
   secondaryAction:
-    "inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700",
+    "inline-flex items-center gap-2 rounded-xl border border-slate-200/80 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-900/5 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md active:scale-[0.97] dark:border-white/10 dark:bg-white/[0.06] dark:text-slate-200 dark:ring-white/5 dark:hover:border-white/20 dark:hover:bg-white/10",
   keyframes: `
     @keyframes modalSlideUp {
-      from { opacity: 0; transform: translateY(40px) scale(0.97); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from { opacity: 0; transform: translateY(32px) scale(0.96); filter: blur(4px); }
+      to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
     }
 
     @keyframes portfolioIconFloat {
