@@ -5,7 +5,6 @@ import {
   PhoneIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
-import emailjs from "@emailjs/browser";
 import { contactSectionContent } from "../data/siteContent";
 import { contactStyles } from "../styles/componentStyles";
 
@@ -131,38 +130,25 @@ export default function ContactSection() {
 
     setFieldErrors({});
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      setSubmitState({
-        status: "error",
-        message: contactSectionContent.form.messages.configError,
-      });
-      return;
-    }
-
     setSubmitState({
       status: "loading",
       message: contactSectionContent.form.messages.sending,
     });
 
     try {
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: trimmedValues.name,
-          from_email: trimmedValues.email,
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: trimmedValues.name,
+          email: trimmedValues.email,
           message: trimmedValues.message,
-          reply_to: trimmedValues.email,
-          to_name: contactSectionContent.form.recipientName,
-        },
-        {
-          publicKey,
-        },
-      );
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send");
+      }
 
       setFormValues(createEmptyFormValues());
       setSubmitState({
