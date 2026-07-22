@@ -4,7 +4,7 @@ export const homeContent = {
   introPrefix: "I'm",
   name: "Nagireddy Avula",
   introSuffix:
-    ", a full-stack developer passionate about creating beautiful web experiences",
+    ", a Full-Stack Engineer specializing in Java backends, dynamic React frontends, and automated DevOps pipelines. I build secure, scalable, and production-ready enterprise applications",
   ctaLabel: "Explore My Work",
   ctaHref: "#about",
 };

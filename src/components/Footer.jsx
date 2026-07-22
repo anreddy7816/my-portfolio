@@ -14,11 +14,11 @@ export default function Footer() {
     >
       <div className={footerStyles.wrapper}>
         <p className={footerStyles.copyright}>{footerContent.copyright}</p>
-        <p className={footerStyles.crafted}>
+        {/* <p className={footerStyles.crafted}>
           {footerContent.craftedPrefix}{" "}
           <span className={footerStyles.heart}>❤</span>{" "}
           {footerContent.craftedBy}
-        </p>
+        </p> */}
       </div>
     </motion.footer>
   );

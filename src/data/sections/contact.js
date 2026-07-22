@@ -38,19 +38,19 @@ export const contactSectionContent = {
     icon: "location",
   },
   form: {
-    title: "Send us a Message",
+    title: "Let's Build Something Great Together",
     recipientName: "Nagi",
     fields: [
       {
         label: "Your Name",
         type: "text",
-        placeholder: "John Doe",
+        placeholder: "Naveen Kumar",
         name: "name",
       },
       {
         label: "Your Email",
         type: "email",
-        placeholder: "john@example.com",
+        placeholder: "naveen@example.com",
         name: "email",
       },
       {

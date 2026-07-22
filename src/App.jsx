@@ -118,7 +118,7 @@ export default function App() {
         <PortfolioSection />
         <ServicesSection />
         <BlogSection />
-        <DocumentsSection documents={documents} />
+        {/* <DocumentsSection documents={documents} /> */}
         <ContactSection />
       </main>
       <ResumeSection isOpen={showResume} onClose={() => setShowResume(false)} />
