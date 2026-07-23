@@ -1,6 +1,6 @@
 import React, { useId, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import NagiImage from "../assets/nagi.png";
+import NagiImage from "../assets/nagi4.png";
 import { navigationLinks } from "../data/siteContent";
 import { navbarStyles } from "../styles/componentStyles";
 

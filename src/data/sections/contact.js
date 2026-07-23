@@ -10,7 +10,7 @@ export const contactSectionContent = {
     },
     {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/anreddy7816/",
+      href: "https://www.linkedin.com/in/nagireddy-avula-ba96ab280/",
       tone: "blue",
     },
   ],
