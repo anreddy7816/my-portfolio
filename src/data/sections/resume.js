@@ -43,7 +43,7 @@ export const resumeContent = {
   updateSummary:
     "This resume popup is intentionally structured with editable sections so you can change the content later for different job applications or portfolio updates.",
   files: {
-    pdf: "/documents/Nagireddy_Avula_Java_Full_Stack_Profile.pdf",
-    word: "/documents/Nagireddy_Avula_Java_Full_Stack_Profile.docx",
+    pdf: "https://amzn-s3-nagi-resumes.s3.ap-south-1.amazonaws.com/Nagireddy_Avula_Java_Full_Stack_Profile.pdf",
+    word: "https://amzn-s3-nagi-resumes.s3.ap-south-1.amazonaws.com/Nagireddy_Avula_Java_Full_Stack_Profile.docx",
   },
 };
