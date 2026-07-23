@@ -17,7 +17,8 @@ export const contactSectionContent = {
   methods: [
     {
       title: "Email",
-      description: "Send us an email and we'll respond as soon as possible.",
+      description:
+        "Reach out to us via email, and we will respond as soon as possible.",
       value: "anreddy7816@gmail.com",
       href: "mailto:anreddy7816@gmail.com",
       icon: "email",

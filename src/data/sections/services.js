@@ -29,7 +29,7 @@ export const services = [
     tone: "green",
     title: "Cloud & DevOps",
     desc: "Deploy and manage your applications efficiently using cloud platforms and DevOps practices.",
-    features: ["AWS & Cloud Setup", "Docker & Kubernetes", "CI/CD Pipelines"],
+    features: ["Azure & Cloud Setup", "Docker & Kubernetes", "CI/CD Pipelines"],
   },
   {
     icon: ServiceIcons.security,

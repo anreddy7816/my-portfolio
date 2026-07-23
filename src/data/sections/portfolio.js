@@ -13,7 +13,7 @@ export const portfolioProjects = [
     title: "E-Commerce Platform",
     description:
       "Full-featured online store with product catalog, shopping cart, and secure payment integration.",
-    tags: ["React", "Spring Boot", "MongoDB"],
+    tags: ["React", "Spring", "MongoDB"],
     tone: "orange",
     modal: {
       overview:
@@ -46,7 +46,7 @@ export const portfolioProjects = [
     title: "Analytics Dashboard",
     description:
       "Real-time data visualization dashboard with interactive charts and comprehensive reporting.",
-    tags: ["React", "Java", "AWS"],
+    tags: ["React", "Java", "Azure"],
     tone: "green",
     modal: {
       overview:
@@ -57,13 +57,13 @@ export const portfolioProjects = [
         "Customizable widget-based layout",
         "CSV & PDF report export",
         "Role-based access control",
-        "Deployed on AWS with CI/CD pipeline",
+        "Deployed on Azure with CI/CD pipeline",
       ],
       techStack: [
         { name: "React", role: "Frontend UI" },
         { name: "Java", role: "Data Visualizations" },
         { name: "WebSockets", role: "Live Data Feed" },
-        { name: "AWS Lambda", role: "Serverless Backend" },
+        { name: "Azure Functions", role: "Serverless Backend" },
         { name: "S3 + CloudFront", role: "Hosting & CDN" },
         { name: "PostgreSQL (RDS)", role: "Data Storage" },
       ],
