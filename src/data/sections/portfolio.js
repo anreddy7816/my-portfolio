@@ -13,7 +13,7 @@ export const portfolioProjects = [
     title: "E-Commerce Platform",
     description:
       "Full-featured online store with product catalog, shopping cart, and secure payment integration.",
-    tags: ["React", "Node.js", "MongoDB"],
+    tags: ["React", "Spring Boot", "MongoDB"],
     tone: "orange",
     modal: {
       overview:
@@ -28,7 +28,7 @@ export const portfolioProjects = [
       ],
       techStack: [
         { name: "React", role: "Frontend UI" },
-        { name: "Node.js", role: "REST API Server" },
+        { name: "Spring Boot", role: "REST API Server" },
         { name: "Express", role: "Routing & Middleware" },
         { name: "MongoDB", role: "Database" },
         { name: "Stripe API", role: "Payment Processing" },
@@ -46,14 +46,14 @@ export const portfolioProjects = [
     title: "Analytics Dashboard",
     description:
       "Real-time data visualization dashboard with interactive charts and comprehensive reporting.",
-    tags: ["React", "D3.js", "AWS"],
+    tags: ["React", "Java", "AWS"],
     tone: "green",
     modal: {
       overview:
         "An enterprise-grade analytics dashboard that ingests streaming data and renders it into actionable insights. Built for performance with virtualized lists, lazy-loaded charts, and a fully responsive layout.",
       features: [
         "Real-time WebSocket data streaming",
-        "Interactive D3.js charts (line, bar, pie, heatmap)",
+        "Interactive Java charts (line, bar, pie, heatmap)",
         "Customizable widget-based layout",
         "CSV & PDF report export",
         "Role-based access control",
@@ -61,7 +61,7 @@ export const portfolioProjects = [
       ],
       techStack: [
         { name: "React", role: "Frontend UI" },
-        { name: "D3.js", role: "Data Visualizations" },
+        { name: "Java", role: "Data Visualizations" },
         { name: "WebSockets", role: "Live Data Feed" },
         { name: "AWS Lambda", role: "Serverless Backend" },
         { name: "S3 + CloudFront", role: "Hosting & CDN" },
@@ -79,13 +79,13 @@ export const portfolioProjects = [
     title: "Chat Application",
     description:
       "Real-time messaging app with user authentication, group chats, and file sharing capabilities.",
-    tags: ["Socket.io", "Node.js", "react"],
+    tags: ["Java", "Spring Boot", "react"],
     tone: "purple",
     modal: {
       overview:
         "A full-stack real-time chat application with sub-100ms message delivery. Supports one-on-one conversations, group rooms, media sharing, and read receipts - all secured with end-to-end encryption.",
       features: [
-        "Real-time messaging via Socket.io",
+        "Real-time messaging via Java",
         "Group chat rooms & private DMs",
         "Image & file sharing with preview",
         "Read receipts & online presence indicators",
@@ -94,8 +94,8 @@ export const portfolioProjects = [
       ],
       techStack: [
         { name: "React", role: "Frontend UI" },
-        { name: "Socket.io", role: "Real-time Messaging" },
-        { name: "Node.js", role: "Backend Server" },
+        { name: "Java", role: "Real-time Messaging" },
+        { name: "Spring Boot", role: "Backend Server" },
         { name: "PostgreSQL", role: "Persistent Storage" },
         { name: "Redis", role: "Session & Pub/Sub" },
         { name: "Cloudinary", role: "Media Storage" },
