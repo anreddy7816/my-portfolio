@@ -2,13 +2,13 @@ export const resumeContent = {
   eyebrow: "Professional Resume",
   title: "Java Full Stack Developer",
   summary:
-    "Java full stack developer with DevOps background and 10 years of experience building, modernizing, and deploying reliable applications.",
+    "Java full stack developer with DevOps background and 11 Years of experience building, modernizing, and deploying reliable applications.",
   profileTitle: "Profile Summary",
   profileSummary:
-    "I am a Java Full Stack Developer with a DevOps background and 10 years of experience delivering backend services, responsive user interfaces, and deployment automation. My work usually sits at the intersection of application engineering, API design, and release reliability.",
+    "I am a Java Full Stack Developer with a DevOps background and 11 Years of experience delivering backend services, responsive user interfaces, and deployment automation. My work usually sits at the intersection of application engineering, API design, and release reliability.",
   highlightsTitle: "Career Highlights",
   highlights: [
-    "10 years of experience delivering enterprise-grade web applications.",
+    "11 Years of experience delivering enterprise-grade web applications.",
     "Strong background in Java full stack development with DevOps ownership.",
     "Focused on scalable architecture, secure APIs, and reliable deployments.",
     "Resume content is structured so you can easily update it later based on role needs.",
@@ -36,7 +36,7 @@ export const resumeContent = {
     "Azure and cloud-native DevOps delivery",
   ],
   experienceLabel: "Experience",
-  experienceValue: "10 Years",
+  experienceValue: "11 Years",
   experienceSummary:
     "Full stack engineering, DevOps practices, deployment pipelines, cloud delivery, and production support.",
   updateTitle: "Update Friendly",
